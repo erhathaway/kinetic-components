@@ -1,27 +1,9 @@
 import React from 'react';
 import anime from 'animejs';
-import styled from 'styled-components';
 
 import {predicates, Animate, Animatable, AnimationCtx, AnimationResult} from '../../src';
-
-const Button = styled.div`
-    width: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    border: 1px solid black;
-    border-radius: 10px;
-    background-color: white;
-    margin: 10px;
-
-    :hover {
-        background-color: gray;
-    }
-    :active {
-        background-color: yellow;
-    }
-`;
+import VisibleToggle from '../components/visible_toggle';
+import Button from '../components/button';
 
 const animateIn = (ctx: AnimationCtx): AnimationResult =>
     anime({
@@ -39,22 +21,11 @@ const animateOut = (ctx: AnimationCtx): AnimationResult =>
         duration: 200
     });
 
-const VisibleToggle: React.FC<{
-    children: (args: {isVisible: boolean; toggleVisible: () => void}) => React.ReactElement; //JSX.Element[] | React.ReactElement | React.ReactChild; //React.ReactChildren; // | React.ReactElement | null | undefined;
-}> = ({children}) => {
-    const [isVisible, setVisible] = React.useState<boolean>(true);
-
-    const toggleVisible = (): void => {
-        setVisible(state => !state);
-    };
-    return children({toggleVisible, isVisible});
-};
-
-const Layout: React.FC = () => (
+const SceneOne: React.FC = () => (
     <VisibleToggle>
         {({isVisible, toggleVisible}) => (
             <>
-                <Button onClick={toggleVisible}>{`toggle to: ${!isVisible}`}</Button>
+                <Button onClick={toggleVisible}>{`${isVisible ? 'hide' : 'show'}`}</Button>
                 <Animate
                     name={'test'}
                     visible={isVisible}
@@ -67,7 +38,7 @@ const Layout: React.FC = () => (
                         style={{
                             height: '150px',
                             width: '400px',
-                            backgroundColor: 'blue',
+                            backgroundColor: 'Chartreuse',
                             border: '1px solid black',
                             borderRadius: '15px',
                             display: 'flex',
@@ -84,4 +55,4 @@ const Layout: React.FC = () => (
     </VisibleToggle>
 );
 
-export default Layout;
+export default SceneOne;

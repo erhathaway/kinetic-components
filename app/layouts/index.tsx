@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import SceneOne from './one_component';
+import SceneOne from './scene_one';
 
 const Container = styled.div`
     height: calc(100vh - 120px);
     width: calc(100vw - 120px);
-    background-color: orange;
+    // background-color: orange;
     overflow-y: scroll;
     font-family: 'Space Mono', monospace;
     padding: 60px;
@@ -36,6 +36,8 @@ const NavPages = styled.div`
 `;
 
 const Scene = styled.div`
+    margin-top: 150px;
+
     height: 400px;
 `;
 
@@ -48,15 +50,18 @@ const Layout = (): JSX.Element => {
                     Animate a single React component or orchestrate animations among a collection of
                     React components.
                 </h3>
-                <Messaging>
-                    <h4>Open the browser console to see the results of running the logger!</h4>
-                </Messaging>
+                <Messaging></Messaging>
             </Header>
             <NavMenu>
                 <NavLink href={'#scene-one'}>Single Component</NavLink>
             </NavMenu>
             <NavPages>
                 <Scene id="scene-one">
+                    <h3>Single component</h3>
+                    <div style={{marginBottom: '30px'}}>
+                        Animate a single component using the `Animate` and `Animatable` components
+                    </div>
+                    <div style={{marginBottom: '30px', borderBottom: '1px solid black'}} />
                     <SceneOne />
                 </Scene>
                 <Scene id="scene-two">
