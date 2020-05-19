@@ -1,5 +1,5 @@
 {
-    "name": "animated-components",
+    "name": "animated-components-react",
     "version": "0.1.1",
     "description": "Animation-library agnostic control for you animations. Build complex multi-component animations with ease.",
     "main": "./dist/index.cjs.js",
