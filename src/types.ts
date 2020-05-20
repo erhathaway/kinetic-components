@@ -73,5 +73,10 @@ export interface AnimateableProps {
     id?: string;
     className?: string;
     animationBinding?: AnimationBinding;
-    children?: <P, T extends string>(animationBinding: AnimationBinding | undefined) => any; //React.ReactElement<P, T>;
+    style?: object;
+    children?:
+        | (<P, T extends string>(animationBinding: AnimationBinding | undefined) => any)
+        | React.ReactElement
+        // | any
+        | Element;
 }
