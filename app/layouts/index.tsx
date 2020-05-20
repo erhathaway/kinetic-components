@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import SceneOne from './scene_one';
+import SceneTwo from './scene_two';
 
 const Container = styled.div`
     height: calc(100vh - 120px);
@@ -38,7 +39,24 @@ const NavPages = styled.div`
 const Scene = styled.div`
     margin-top: 150px;
 
-    height: 400px;
+    height: 600px;
+`;
+
+const SceneTitle = styled.div`
+    display: flex;
+`;
+
+const Colon = styled.h3`
+    margin-left: 10px;
+    color: blue;
+`;
+const SceneDescription = styled.div`
+    margin-bottom: 30px;
+`;
+
+const SceneDivider = styled.div`
+    margin-bottom: 30px;
+    border-bottom: 1px solid black;
 `;
 
 const Layout = (): JSX.Element => {
@@ -57,15 +75,26 @@ const Layout = (): JSX.Element => {
             </NavMenu>
             <NavPages>
                 <Scene id="scene-one">
-                    <h3>Single component</h3>
-                    <div style={{marginBottom: '30px'}}>
+                    <SceneTitle>
+                        <h3>Single component</h3>
+                    </SceneTitle>
+                    <SceneDescription>
                         Animate a single component using the `Animate` and `Animatable` components
-                    </div>
-                    <div style={{marginBottom: '30px', borderBottom: '1px solid black'}} />
+                    </SceneDescription>
+                    <SceneDivider />
                     <SceneOne />
                 </Scene>
                 <Scene id="scene-two">
-                    <SceneOne />
+                    <SceneTitle>
+                        <h3>Parent and child:</h3>
+                        <Colon>with no orchestration binding</Colon>
+                    </SceneTitle>
+                    <SceneDescription>
+                        There is no orchestration binding between the two components. This means the
+                        parent can leave at any time and the child can enter at any time.
+                    </SceneDescription>
+                    <SceneDivider />
+                    <SceneTwo />
                 </Scene>
             </NavPages>
         </Container>

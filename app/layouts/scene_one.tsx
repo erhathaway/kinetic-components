@@ -36,6 +36,7 @@ const SceneOne: React.FC = () => (
                 >
                     <Animatable
                         style={{
+                            marginTop: '100px',
                             height: '150px',
                             width: '400px',
                             backgroundColor: 'Chartreuse',
