@@ -9,13 +9,7 @@ import SceneFive from './scene_five';
 
 const Container = styled.div`
     display: flex;
-
-    // height: calc(100vh - 120px);
-    // width: calc(100vw - 120px);
-    // // background-color: orange;
-    // overflow-y: scroll;
     font-family: 'Space Mono', monospace;
-    // padding: 60px;
 `;
 
 const Header = styled.div`
@@ -26,7 +20,6 @@ const Header = styled.div`
     max-width: 80%;
     color: rgb(119, 0, 119);
     background-color: lightskyblue;
-    // background-color: rgb(68, 238, 170);
 `;
 
 const HeaderSubText = styled.h3`
@@ -36,9 +29,7 @@ const HeaderSubText = styled.h3`
 const Body = styled.div`
     height: calc(100vh - 120px);
     width: calc(100vw - 120px);
-    // background-color: orange;
     overflow-y: scroll;
-    // font-family: 'Space Mono', monospace;
     padding: 60px;
 `;
 
