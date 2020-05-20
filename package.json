@@ -11,8 +11,8 @@
     ],
     "scripts": {
         "app:start": "parcel app/index.html --out-dir build_app --no-cache --no-autoinstall",
-        "app:build": "npm run clean && parcel build --out-dir build_app --no-autoinstall app/index.html",
-        "clean": "rimraf dist tmp",
+        "app:build": "npm run clean && parcel build app/index.html --out-dir docs --no-autoinstall --no-source-maps ",
+        "clean": "rimraf dist tmp docs build_app",
         "build": "npm run clean && rollup -c",
         "build:watch": "npm run clean && rollup -cw",
         "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
