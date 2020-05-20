@@ -26,11 +26,11 @@ const animateOut = (ctx: AnimationCtx): AnimationResult =>
     });
 
 const ParentAnimatable = styled(StyledAnimatable)`
-    background-color: palevioletred;
+    background-color: rgb(155, 255, 181);
 `;
 
 const ChildAnimatable = styled(StyledAnimatable)`
-    background-color: deepskyblue;
+    background-color: #cbe9ff;
 `;
 
 const Buttons = styled.div`

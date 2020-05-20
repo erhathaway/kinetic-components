@@ -25,7 +25,8 @@ const Header = styled.div`
     padding: 40px;
     max-width: 80%;
     color: rgb(119, 0, 119);
-    background-color: rgb(68, 238, 170);
+    background-color: lightskyblue;
+    // background-color: rgb(68, 238, 170);
 `;
 
 const HeaderSubText = styled.h3`
@@ -49,9 +50,19 @@ const Body = styled.div`
 //     max-width: 800px;
 // `;
 
-const NavMenu = styled.nav``;
+const NavMenu = styled.nav`
+    display: flex;
+    flex-direction: column;
+`;
 
-const NavLink = styled.a``;
+const NavMenuText = styled.div`
+    margin-top: 40px;
+    margin-bottom: 20px;
+`;
+const NavLink = styled.a`
+    font-size: 12px;
+    margin: 5px;
+`;
 
 const NavPages = styled.div`
     display: flex;
@@ -59,17 +70,29 @@ const NavPages = styled.div`
 `;
 
 const Scene = styled.div`
-    margin-top: 150px;
+    padding-top: 25px;
+    margin-bottom: 150px;
 
     height: 600px;
 `;
 
 const SceneTitle = styled.div`
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 20px;
 `;
 
-const Colon = styled.h3`
-    margin-left: 10px;
+const SceneTitleMain = styled.h3`
+    margin: 0px;
+`;
+
+const SceneTitleSub = styled.h3`
+    margin: 0px;
+
+    // margin-left: 10px;
     color: blue;
 `;
 const SceneDescription = styled.div`
@@ -95,15 +118,24 @@ const Layout = (): JSX.Element => {
                     Animate a single React component or orchestrate animations among a collection of
                     React components.
                 </HeaderSubText>
+                <NavMenu>
+                    <NavMenuText>Jump to an example:</NavMenuText>
+                    <NavLink href={'#scene-one'}>Single Component</NavLink>
+                    <NavLink href={'#scene-two'}>Parent and child - no orchestration</NavLink>
+                    <NavLink href={'#scene-three'}>
+                        Parent and child - child waits for parent to enter
+                    </NavLink>
+                    <NavLink href={'#scene-four'}>
+                        Parent and child - parent waits for child to exit
+                    </NavLink>
+                    <NavLink href={'#scene-five'}>Children of children</NavLink>
+                </NavMenu>
             </Header>
             <Body>
-                <NavMenu>
-                    <NavLink href={'#scene-one'}>Single Component</NavLink>
-                </NavMenu>
                 <NavPages>
                     <Scene id="scene-one">
                         <SceneTitle>
-                            <h3>Single component</h3>
+                            <SceneTitleMain>Single component</SceneTitleMain>
                         </SceneTitle>
                         <SceneDescription>
                             Animate a single component using the `Animate` and `Animatable`
@@ -114,8 +146,8 @@ const Layout = (): JSX.Element => {
                     </Scene>
                     <Scene id="scene-two">
                         <SceneTitle>
-                            <h3>Parent and child:</h3>
-                            <Colon>with no orchestration binding</Colon>
+                            <SceneTitleMain>Parent and child:</SceneTitleMain>
+                            <SceneTitleSub>with no orchestration binding</SceneTitleSub>
                         </SceneTitle>
                         <SceneDescription>
                             There is no orchestration binding between the two components. This means
@@ -126,8 +158,8 @@ const Layout = (): JSX.Element => {
                     </Scene>
                     <Scene id="scene-three">
                         <SceneTitle>
-                            <h3>Parent and child:</h3>
-                            <Colon>child waits for parent to enter</Colon>
+                            <SceneTitleMain>Parent and child:</SceneTitleMain>
+                            <SceneTitleSub>child waits for parent to enter</SceneTitleSub>
                         </SceneTitle>
                         <SceneDescription>
                             <b>Uses props: </b>
@@ -139,8 +171,8 @@ const Layout = (): JSX.Element => {
                     </Scene>
                     <Scene id="scene-four">
                         <SceneTitle>
-                            <h3>Parent and child:</h3>
-                            <Colon>parent waits for child to exit</Colon>
+                            <SceneTitleMain>Parent and child:</SceneTitleMain>
+                            <SceneTitleSub>parent waits for child to exit</SceneTitleSub>
                         </SceneTitle>
                         <SceneDescription>
                             <b>Uses props: </b>
@@ -151,8 +183,8 @@ const Layout = (): JSX.Element => {
                     </Scene>
                     <Scene id="scene-five">
                         <SceneTitle>
-                            <h3>Children of children:</h3>
-                            <Colon>everyone waits for everyone else</Colon>
+                            <SceneTitleMain>Children of children:</SceneTitleMain>
+                            <SceneTitleSub>everyone waits for everyone else</SceneTitleSub>
                         </SceneTitle>
                         <SceneDescription>
                             <b>Uses props: </b>

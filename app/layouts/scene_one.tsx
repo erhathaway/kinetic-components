@@ -1,9 +1,15 @@
 import React from 'react';
 import anime from 'animejs';
+import styled from 'styled-components';
 
-import {predicates, Animate, Animatable, AnimationCtx, AnimationResult} from '../../src';
+import {predicates, Animate, AnimationCtx, AnimationResult} from '../../src';
 import VisibleToggle from '../components/visible_toggle';
 import Button from '../components/button';
+import StyledAnimatable from '../components/animatable';
+
+const Animatable = styled(StyledAnimatable)`
+    background-color: rgb(155, 255, 181);
+`;
 
 const animateIn = (ctx: AnimationCtx): AnimationResult =>
     anime({
@@ -34,22 +40,7 @@ const SceneOne: React.FC = () => (
                         [predicates.isHidden, animateOut]
                     ]}
                 >
-                    <Animatable
-                        style={{
-                            marginTop: '100px',
-                            height: '100px',
-                            width: '300px',
-                            backgroundColor: 'Chartreuse',
-                            border: '1px solid black',
-                            borderRadius: '15px',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            textAlign: 'center',
-                            boxShadow: '2px 2px 0 #222';
-
-                        }}
-                    >
+                    <Animatable>
                         <h4>Look at me. I'm animated!</h4>
                     </Animatable>
                 </Animate>
