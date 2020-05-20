@@ -37,8 +37,8 @@ const SceneOne: React.FC = () => (
                     <Animatable
                         style={{
                             marginTop: '100px',
-                            height: '150px',
-                            width: '400px',
+                            height: '100px',
+                            width: '300px',
                             backgroundColor: 'Chartreuse',
                             border: '1px solid black',
                             borderRadius: '15px',
@@ -50,7 +50,7 @@ const SceneOne: React.FC = () => (
 
                         }}
                     >
-                        <h1>Look at me. I'm animated!</h1>
+                        <h4>Look at me. I'm animated!</h4>
                     </Animatable>
                 </Animate>
             </>

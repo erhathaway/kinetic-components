@@ -11,7 +11,9 @@ const animateIn = (ctx: AnimationCtx): AnimationResult =>
     anime({
         targets: `#${ctx.node.id}`,
         translateX: [0, '50%'],
-        opacity: [0, 1]
+        opacity: [0, 1],
+        easing: 'easeInQuad',
+        duration: 120
     });
 
 const animateOut = (ctx: AnimationCtx): AnimationResult =>
@@ -24,7 +26,7 @@ const animateOut = (ctx: AnimationCtx): AnimationResult =>
     });
 
 const ParentAnimatable = styled(StyledAnimatable)`
-    background-color: gold;
+    background-color: olive;
 `;
 
 const ChildAnimatable = styled(StyledAnimatable)`
@@ -35,7 +37,7 @@ const Buttons = styled.div`
     display: flex;
 `;
 
-const SceneThree: React.FC = () => (
+const SceneFour: React.FC = () => (
     <VisibleToggle>
         {({isVisible: isVisibleOne, toggleVisible: toggleVisibleOne}) => (
             <VisibleToggle>
@@ -53,6 +55,7 @@ const SceneThree: React.FC = () => (
                         <Animate
                             name={'parent'}
                             visible={isVisibleOne}
+                            exitAfterChildFinish={['scene-four-child']}
                             when={[
                                 [predicates.isVisible, animateIn],
                                 [predicates.isHidden, animateOut]
@@ -62,10 +65,9 @@ const SceneThree: React.FC = () => (
                                 {animationBinding => (
                                     <div>
                                         <Animate
-                                            id={'scene-three-child'}
+                                            id={'scene-four-child'}
                                             name={'child'}
                                             visible={isVisibleTwo}
-                                            enterAfterParentFinish
                                             animationBinding={animationBinding}
                                             when={[
                                                 [predicates.isVisible, animateIn],
@@ -85,4 +87,4 @@ const SceneThree: React.FC = () => (
     </VisibleToggle>
 );
 
-export default SceneThree;
+export default SceneFour;

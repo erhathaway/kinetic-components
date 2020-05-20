@@ -2,9 +2,10 @@ import React from 'react';
 import anime from 'animejs';
 import styled from 'styled-components';
 
-import {predicates, Animate, Animatable, AnimationCtx, AnimationResult} from '../../src';
+import {predicates, Animate, AnimationCtx, AnimationResult} from '../../src';
 import VisibleToggle from '../components/visible_toggle';
 import Button from '../components/button';
+import StyledAnimatable from '../components/animatable';
 
 const animateIn = (ctx: AnimationCtx): AnimationResult =>
     anime({
@@ -22,22 +23,12 @@ const animateOut = (ctx: AnimationCtx): AnimationResult =>
         duration: 200
     });
 
-const ParentAnimatable = styled(Animatable)`
-    margin-top: 100px;
-    height: 150px;
-    width: 400px;
-    background-color: Chartreuse;
-    border: 1px solid black;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    box-shadow: 2px 2px 0 #222;
+const ParentAnimatable = styled(StyledAnimatable)`
+    background-color: lightgrey;
 `;
 
-const ChildAnimatable = styled(ParentAnimatable)`
-    background-color: blue;
+const ChildAnimatable = styled(StyledAnimatable)`
+    background-color: lightskyblue;
 `;
 
 const Buttons = styled.div`
