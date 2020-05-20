@@ -46,7 +46,7 @@ export default ({isVisibleParent, isVisibleChild, animateIn, animateOut, parentS
             [predicates.isHidden, animateOut]
         ]}
     >
-        <Animatable facc styles={parentStyles}>
+        <Animatable  styles={parentStyles}>
             {animationBinding => (
                 <Animate
                     visible={isVisibleChild}
@@ -88,7 +88,7 @@ export default ({isVisibleParent, isVisibleChild, animateIn, animateOut, parentS
                                         [predicates.isHidden, animateOut]
                                     ]}
                                 >
-                                    <ParentAnimatable facc>
+                                    <ParentAnimatable>
                                         {animationBinding => (
                                             <Animate
                                                 id={'scene-three-child'}

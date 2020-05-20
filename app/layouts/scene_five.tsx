@@ -53,7 +53,7 @@ export default ({isVisibleParent, isVisibleChildOne, isVisibleChildTwo, animateI
             [predicates.isHidden, animateOut]
         ]}
     >
-        <Animatable facc styles={parentStyles}>
+        <Animatable  styles={parentStyles}>
             {parentAnimationBinding => (
                 <Animate
                     id={'child-one'}
@@ -66,7 +66,7 @@ export default ({isVisibleParent, isVisibleChildOne, isVisibleChildTwo, animateI
                         [predicates.isHidden, animateOut]
                     ]}
                 >
-                    <Animatable facc styles={childOneStyles}>
+                    <Animatable  styles={childOneStyles}>
                         {childAnimationBinding => (
                             <Animate
                                 id={'child-two'}
@@ -120,7 +120,7 @@ export default ({isVisibleParent, isVisibleChildOne, isVisibleChildTwo, animateI
                                                 [predicates.isHidden, animateOut]
                                             ]}
                                         >
-                                            <ParentAnimatable facc>
+                                            <ParentAnimatable>
                                                 {parentAnimationBinding => (
                                                     <Animate
                                                         id={'scene-five-child-one'}
@@ -136,7 +136,7 @@ export default ({isVisibleParent, isVisibleChildOne, isVisibleChildTwo, animateI
                                                             [predicates.isHidden, animateOut]
                                                         ]}
                                                     >
-                                                        <FirstChildAnimatable facc>
+                                                        <FirstChildAnimatable>
                                                             {childAnimationBinding => (
                                                                 <Animate
                                                                     id={'scene-five-child-two'}

@@ -70,7 +70,6 @@ export interface AnimateProps<PS, TS> {
 }
 
 export interface AnimateableProps {
-    facc?: boolean;
     id?: string;
     className?: string;
     animationBinding?: AnimationBinding;
@@ -78,6 +77,6 @@ export interface AnimateableProps {
     children?:
         | (<P, T extends string>(animationBinding: AnimationBinding | undefined) => any)
         | React.ReactElement
-        | any
+        // | any
         | Element;
 }
