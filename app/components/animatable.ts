@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {Animatable} from '../../src';
 
 const StyledAnimatable = styled(Animatable)`
-    margin-top: 100px;
+    margin-top: 30px;
     height: 100px;
     width: 200px;
     background-color: Chartreuse;

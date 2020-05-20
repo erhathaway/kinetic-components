@@ -21,7 +21,7 @@ const Container = styled.div`
 const Header = styled.div`
     // position: fixed;
     height: 100vh;
-    color: brown;
+    color: Propown;
     padding: 40px;
     max-width: 80%;
     color: rgb(119, 0, 119);
@@ -74,11 +74,16 @@ const Colon = styled.h3`
 `;
 const SceneDescription = styled.div`
     margin-bottom: 30px;
+    font-size: 13px;
 `;
 
 const SceneDivider = styled.div`
     margin-bottom: 30px;
     border-bottom: 1px solid black;
+`;
+
+const Prop = styled.div`
+    margin: 10px;
 `;
 
 const Layout = (): JSX.Element => {
@@ -96,22 +101,6 @@ const Layout = (): JSX.Element => {
                     <NavLink href={'#scene-one'}>Single Component</NavLink>
                 </NavMenu>
                 <NavPages>
-                    <Scene id="scene-five">
-                        <SceneTitle>
-                            <h3>Children of children:</h3>
-                            <Colon>parent waits for child to exit</Colon>
-                        </SceneTitle>
-                        <SceneDescription>
-                            The parent and child are bound together by passing the
-                            `animationBinding` prop from the parent to the child. The parent is told
-                            to wait for the child to finish leaving before starting to leave. This
-                            is accomplished by passing the child id to the parent prop
-                            `exitAfterChildFinish`. Note: This only works if the child has finished
-                            animating in.
-                        </SceneDescription>
-                        <SceneDivider />
-                        <SceneFive />
-                    </Scene>
                     <Scene id="scene-one">
                         <SceneTitle>
                             <h3>Single component</h3>
@@ -141,10 +130,9 @@ const Layout = (): JSX.Element => {
                             <Colon>child waits for parent to enter</Colon>
                         </SceneTitle>
                         <SceneDescription>
-                            The parent and child are bound together by passing the
-                            `animationBinding` prop from the parent to the child. The child is told
-                            to wait for the parent to finish entering before starting to enter via
-                            the prop `enterAfterParentFinish`.
+                            <b>Uses props: </b>
+                            <Prop /> - animationBinding
+                            <Prop />- enterAfterParentFinish
                         </SceneDescription>
                         <SceneDivider />
                         <SceneThree />
@@ -155,15 +143,24 @@ const Layout = (): JSX.Element => {
                             <Colon>parent waits for child to exit</Colon>
                         </SceneTitle>
                         <SceneDescription>
-                            The parent and child are bound together by passing the
-                            `animationBinding` prop from the parent to the child. The parent is told
-                            to wait for the child to finish leaving before starting to leave. This
-                            is accomplished by passing the child id to the parent prop
-                            `exitAfterChildFinish`. Note: This only works if the child has finished
-                            animating in.
+                            <b>Uses props: </b>
+                            <Prop /> - animationBinding <Prop />- exitAfterChildFinish
                         </SceneDescription>
                         <SceneDivider />
                         <SceneFour />
+                    </Scene>
+                    <Scene id="scene-five">
+                        <SceneTitle>
+                            <h3>Children of children:</h3>
+                            <Colon>everyone waits for everyone else</Colon>
+                        </SceneTitle>
+                        <SceneDescription>
+                            <b>Uses props: </b>
+                            <Prop /> - animationBinding <Prop />- exitAfterChildFinish
+                            <Prop />- enterAfterParentFinish
+                        </SceneDescription>
+                        <SceneDivider />
+                        <SceneFive />
                     </Scene>
                 </NavPages>
             </Body>
