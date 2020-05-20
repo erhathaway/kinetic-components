@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import SceneOne from './scene_one';
 import SceneTwo from './scene_two';
+import SceneThree from './scene_three';
 
 const Container = styled.div`
     height: calc(100vh - 120px);
@@ -95,6 +96,20 @@ const Layout = (): JSX.Element => {
                     </SceneDescription>
                     <SceneDivider />
                     <SceneTwo />
+                </Scene>
+                <Scene id="scene-three">
+                    <SceneTitle>
+                        <h3>Parent and child:</h3>
+                        <Colon>child waits for parent to enter</Colon>
+                    </SceneTitle>
+                    <SceneDescription>
+                        The parent and child are bound together by passing the `animationBinding`
+                        prop from the parent to the child. The child is told to wait for the parent
+                        to finish entering before starting to enter via the prop
+                        `enterAfterParentFinish`.
+                    </SceneDescription>
+                    <SceneDivider />
+                    <SceneThree />
                 </Scene>
             </NavPages>
         </Container>

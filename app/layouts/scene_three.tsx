@@ -62,24 +62,30 @@ const SceneTwo: React.FC = () => (
                         <Animate
                             name={'parent'}
                             visible={isVisibleOne}
+                            // exitAfterChildFinish={['inside']}
                             when={[
                                 [predicates.isVisible, animateIn],
                                 [predicates.isHidden, animateOut]
                             ]}
                         >
-                            <ParentAnimatable>
-                                <div>
-                                    <Animate
-                                        name={'child'}
-                                        visible={isVisibleTwo}
-                                        when={[
-                                            [predicates.isVisible, animateIn],
-                                            [predicates.isHidden, animateOut]
-                                        ]}
-                                    >
-                                        <ChildAnimatable />
-                                    </Animate>
-                                </div>
+                            <ParentAnimatable facc>
+                                {animationBinding => (
+                                    <div>
+                                        <Animate
+                                            id={'inside'}
+                                            name={'inside'}
+                                            visible={isVisibleTwo}
+                                            enterAfterParentFinish
+                                            animationBinding={animationBinding}
+                                            when={[
+                                                [predicates.isVisible, animateIn],
+                                                [predicates.isHidden, animateOut]
+                                            ]}
+                                        >
+                                            <ChildAnimatable />
+                                        </Animate>
+                                    </div>
+                                )}
                             </ParentAnimatable>
                         </Animate>
                     </>

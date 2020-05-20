@@ -45,7 +45,9 @@ const SceneOne: React.FC = () => (
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            textAlign: 'center'
+                            textAlign: 'center',
+                            boxShadow: '2px 2px 0 #222';
+
                         }}
                     >
                         <h1>Look at me. I'm animated!</h1>
