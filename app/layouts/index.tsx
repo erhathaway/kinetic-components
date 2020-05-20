@@ -5,6 +5,7 @@ import SceneOne from './scene_one';
 import SceneTwo from './scene_two';
 import SceneThree from './scene_three';
 import SceneFour from './scene_four';
+import SceneFive from './scene_five';
 
 const Container = styled.div`
     display: flex;
@@ -95,6 +96,22 @@ const Layout = (): JSX.Element => {
                     <NavLink href={'#scene-one'}>Single Component</NavLink>
                 </NavMenu>
                 <NavPages>
+                    <Scene id="scene-five">
+                        <SceneTitle>
+                            <h3>Children of children:</h3>
+                            <Colon>parent waits for child to exit</Colon>
+                        </SceneTitle>
+                        <SceneDescription>
+                            The parent and child are bound together by passing the
+                            `animationBinding` prop from the parent to the child. The parent is told
+                            to wait for the child to finish leaving before starting to leave. This
+                            is accomplished by passing the child id to the parent prop
+                            `exitAfterChildFinish`. Note: This only works if the child has finished
+                            animating in.
+                        </SceneDescription>
+                        <SceneDivider />
+                        <SceneFive />
+                    </Scene>
                     <Scene id="scene-one">
                         <SceneTitle>
                             <h3>Single component</h3>
