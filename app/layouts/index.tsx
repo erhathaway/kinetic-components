@@ -50,7 +50,7 @@ const HeaderFiller = styled(Header)`
 const HeaderBody = styled.div`
     padding: 40px;
     @media (max-width: ${VERTICAL_SCREEN_WIDTH}) {
-        max-width: 400px;
+        // max-width: 400px;
         position: relative;
     }
 `;
@@ -62,7 +62,7 @@ const HeaderSubText = styled.div`
 `;
 
 const HeaderCodeBlock = styled(Highlight)`
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 10px;
 `;
 
@@ -72,8 +72,8 @@ const NavMenu = styled.nav`
 `;
 
 const NavMenuText = styled.div`
-    margin-top: 40px;
-    margin-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 10px;
     background-color: Lavender;
     width: 190px;
     padding: 5px;
