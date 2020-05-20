@@ -8,49 +8,63 @@ import SceneThree from './scene_three';
 import SceneFour from './scene_four';
 import SceneFive from './scene_five';
 
+const VERTICAL_SCREEN_WIDTH = '1050px';
 const Container = styled.div`
     display: flex;
     font-family: 'Space Mono', monospace;
+    height: 100vh;
+    overflow-y: scroll;
+
+    @media (max-width: ${VERTICAL_SCREEN_WIDTH}) {
+        flex-direction: column;
+        overflow-y: scroll;
+    }
 `;
 
 const Header = styled.div`
+    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100vh;
     color: Propown;
-    max-width: 80%;
+    width: 50%;
+    max-width: 550px;
     color: rgb(119, 0, 119);
     background-color: lightskyblue;
+
+    @media (min-width: ${VERTICAL_SCREEN_WIDTH}) {
+        height: 100vh;
+    }
+    @media (max-width: ${VERTICAL_SCREEN_WIDTH}) {
+        max-width: 100%;
+        width: 100%;
+        position: relative;
+    }
+`;
+
+const HeaderFiller = styled(Header)`
+    position: relative;
+    background-color: green;
 `;
 
 const HeaderBody = styled.div`
     padding: 40px;
+    @media (max-width: ${VERTICAL_SCREEN_WIDTH}) {
+        max-width: 400px;
+        position: relative;
+    }
 `;
 
-const HeaderSubText = styled.h3`
+const HeaderSubText = styled.div`
+    font-size: 14px;
     color: black;
+    padding-bottom: 20px;
 `;
 
-const CodeBlock = styled(Highlight)`
-    margin-top: 40px;
-    margin-bottom: 20px;
+const HeaderCodeBlock = styled(Highlight)`
+    margin-top: 30px;
+    margin-bottom: 10px;
 `;
-
-const Body = styled.div`
-    height: calc(100vh - 120px);
-    width: calc(100vw - 120px);
-    overflow-y: scroll;
-    padding: 60px;
-`;
-
-// const Messaging = styled.div`
-//     border: 1px solid black;
-//     border-radius: 7px;
-//     padding: 20px;
-//     color: white;
-//     max-width: 800px;
-// `;
 
 const NavMenu = styled.nav`
     display: flex;
@@ -65,10 +79,7 @@ const NavMenuText = styled.div`
     padding: 5px;
 `;
 const NavLink = styled.a`
-    // display: block;
     font-size: 12px;
-    // margin: 5px;
-    // width: 100%;
     padding: 7px;
     border-radius: 5px;
     :hover {
@@ -93,11 +104,20 @@ const Github = styled.div`
     font-size: 10px;
 `;
 
+const Body = styled.div`
+    width: calc(100vw - 120px);
+    max-width: 550px;
+    padding: 60px;
+
+    @media (max-width: ${VERTICAL_SCREEN_WIDTH}) {
+        max-width: 100%;
+        position: relative;
+    }
+`;
+
 const Scene = styled.div`
     padding-top: 25px;
     margin-bottom: 150px;
-
-    // height: 600px;
 `;
 
 const SceneTitle = styled.div`
@@ -115,8 +135,6 @@ const SceneTitleMain = styled.h3`
 
 const SceneTitleSub = styled.h3`
     margin: 0px;
-
-    // margin-left: 10px;
     color: blue;
 `;
 const SceneDescription = styled.div`
@@ -136,6 +154,7 @@ const Prop = styled.div`
 const Layout = (): JSX.Element => {
     return (
         <Container>
+            <HeaderFiller />
             <Header>
                 <HeaderBody>
                     <h1>Animated Components</h1>
@@ -143,9 +162,12 @@ const Layout = (): JSX.Element => {
                         Animate a single React component or orchestrate animations among a
                         collection of React components.
                     </HeaderSubText>
-                    <CodeBlock language={'bash'}>
+                    <HeaderSubText>
+                        Use CSS animations or your favorite JS animation library!
+                    </HeaderSubText>
+                    <HeaderCodeBlock language={'bash'}>
                         npm install animated-components-react --save
-                    </CodeBlock>
+                    </HeaderCodeBlock>
                     <NavMenu>
                         <NavMenuText>Jump to an example:</NavMenuText>
                         <NavLink href={'#scene-one'}>Single Component</NavLink>
