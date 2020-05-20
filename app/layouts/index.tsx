@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Highlight from 'react-highlight.js';
 
 import SceneOne from './scene_one';
 import SceneTwo from './scene_two';
@@ -24,6 +25,11 @@ const Header = styled.div`
 
 const HeaderSubText = styled.h3`
     color: black;
+`;
+
+const CodeBlock = styled(Highlight)`
+    margin-top: 40px;
+    margin-bottom: 20px;
 `;
 
 const Body = styled.div`
@@ -109,6 +115,9 @@ const Layout = (): JSX.Element => {
                     Animate a single React component or orchestrate animations among a collection of
                     React components.
                 </HeaderSubText>
+                <CodeBlock language={'bash'}>
+                    npm install animated-components-react --save
+                </CodeBlock>
                 <NavMenu>
                     <NavMenuText>Jump to an example:</NavMenuText>
                     <NavLink href={'#scene-one'}>Single Component</NavLink>
