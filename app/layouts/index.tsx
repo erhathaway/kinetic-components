@@ -97,7 +97,7 @@ const Scene = styled.div`
     padding-top: 25px;
     margin-bottom: 150px;
 
-    height: 600px;
+    // height: 600px;
 `;
 
 const SceneTitle = styled.div`

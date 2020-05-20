@@ -3,9 +3,7 @@ import anime from 'animejs';
 import styled from 'styled-components';
 
 import {predicates, Animate, AnimationCtx, AnimationResult} from '../../src';
-import VisibleToggle from '../components/visible_toggle';
-import Button from '../components/button';
-import StyledAnimatable from '../components/animatable';
+import {StyledAnimatable, Button, Code, Playground, VisibleToggle} from '../components';
 
 const animateIn = (ctx: AnimationCtx): AnimationResult =>
     anime({
@@ -36,48 +34,77 @@ const Buttons = styled.div`
 `;
 
 const SceneTwo: React.FC = () => (
-    <VisibleToggle>
-        {({isVisible: isVisibleOne, toggleVisible: toggleVisibleOne}) => (
-            <VisibleToggle>
-                {({isVisible: isVisibleTwo, toggleVisible: toggleVisibleTwo}) => (
-                    <>
-                        <Buttons>
-                            <Button onClick={toggleVisibleOne}>{`Parent: ${
-                                isVisibleOne ? 'hide' : 'show'
-                            }`}</Button>
-                            <Button onClick={toggleVisibleTwo}>{`Child: ${
-                                isVisibleTwo ? 'hide' : 'show'
-                            }`}</Button>
-                        </Buttons>
+    <>
+        <Code>
+            {`
+import {(Animate, Animatable, predicates)} from 'animated-components-react'; 
 
-                        <Animate
-                            name={'parent'}
-                            visible={isVisibleOne}
-                            when={[
-                                [predicates.isVisible, animateIn],
-                                [predicates.isHidden, animateOut]
-                            ]}
-                        >
-                            <ParentAnimatable>
-                                <div>
-                                    <Animate
-                                        name={'child'}
-                                        visible={isVisibleTwo}
-                                        when={[
-                                            [predicates.isVisible, animateIn],
-                                            [predicates.isHidden, animateOut]
-                                        ]}
-                                    >
-                                        <ChildAnimatable />
-                                    </Animate>
-                                </div>
-                            </ParentAnimatable>
-                        </Animate>
-                    </>
+export default ({(isVisibleParent, isVisibleChild, animateIn, animateOut, styles)}) => (
+    <Animate
+        visible={isVisibleParent}
+        when={[
+            [predicates.isVisible, animateIn],
+            [predicates.isHidden, animateOut]
+        ]}
+    >
+        <ParentAnimatable>
+            <Animate
+                visible={isVisibleChild}
+                when={[
+                    [predicates.isVisible, animateIn],
+                    [predicates.isHidden, animateOut]
+                ]}
+            >
+                <ChildAnimatable />
+            </Animate>
+        </ParentAnimatable>
+    </Animate>
+});
+            `}
+        </Code>
+        <Playground>
+            <VisibleToggle>
+                {({isVisible: isVisibleOne, toggleVisible: toggleVisibleOne}) => (
+                    <VisibleToggle>
+                        {({isVisible: isVisibleTwo, toggleVisible: toggleVisibleTwo}) => (
+                            <>
+                                <Buttons>
+                                    <Button onClick={toggleVisibleOne}>{`Parent: ${
+                                        isVisibleOne ? 'hide' : 'show'
+                                    }`}</Button>
+                                    <Button onClick={toggleVisibleTwo}>{`Child: ${
+                                        isVisibleTwo ? 'hide' : 'show'
+                                    }`}</Button>
+                                </Buttons>
+
+                                <Animate
+                                    name={'parent'}
+                                    visible={isVisibleOne}
+                                    when={[
+                                        [predicates.isVisible, animateIn],
+                                        [predicates.isHidden, animateOut]
+                                    ]}
+                                >
+                                    <ParentAnimatable>
+                                        <Animate
+                                            name={'child'}
+                                            visible={isVisibleTwo}
+                                            when={[
+                                                [predicates.isVisible, animateIn],
+                                                [predicates.isHidden, animateOut]
+                                            ]}
+                                        >
+                                            <ChildAnimatable />
+                                        </Animate>
+                                    </ParentAnimatable>
+                                </Animate>
+                            </>
+                        )}
+                    </VisibleToggle>
                 )}
             </VisibleToggle>
-        )}
-    </VisibleToggle>
+        </Playground>
+    </>
 );
 
 export default SceneTwo;
