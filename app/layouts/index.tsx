@@ -14,13 +14,18 @@ const Container = styled.div`
 `;
 
 const Header = styled.div`
-    // position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 100vh;
     color: Propown;
-    padding: 40px;
     max-width: 80%;
     color: rgb(119, 0, 119);
     background-color: lightskyblue;
+`;
+
+const HeaderBody = styled.div`
+    padding: 40px;
 `;
 
 const HeaderSubText = styled.h3`
@@ -55,15 +60,37 @@ const NavMenu = styled.nav`
 const NavMenuText = styled.div`
     margin-top: 40px;
     margin-bottom: 20px;
+    background-color: Lavender;
+    width: 190px;
+    padding: 5px;
 `;
 const NavLink = styled.a`
+    // display: block;
     font-size: 12px;
-    margin: 5px;
+    // margin: 5px;
+    // width: 100%;
+    padding: 7px;
+    border-radius: 5px;
+    :hover {
+        background-color: 46b1f3;
+    }
 `;
 
 const NavPages = styled.div`
     display: flex;
     flex-direction: column;
+`;
+
+const Github = styled.div`
+    height: 45px;
+    // width: 100%;
+    // background-color: Lavender;
+    padding: 10px;
+    padding-left: 30px;
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    font-size: 10px;
 `;
 
 const Scene = styled.div`
@@ -110,26 +137,28 @@ const Layout = (): JSX.Element => {
     return (
         <Container>
             <Header>
-                <h1>Animated Components</h1>
-                <HeaderSubText>
-                    Animate a single React component or orchestrate animations among a collection of
-                    React components.
-                </HeaderSubText>
-                <CodeBlock language={'bash'}>
-                    npm install animated-components-react --save
-                </CodeBlock>
-                <NavMenu>
-                    <NavMenuText>Jump to an example:</NavMenuText>
-                    <NavLink href={'#scene-one'}>Single Component</NavLink>
-                    <NavLink href={'#scene-two'}>Parent and child - no orchestration</NavLink>
-                    <NavLink href={'#scene-three'}>
-                        Parent and child - child waits for parent to enter
-                    </NavLink>
-                    <NavLink href={'#scene-four'}>
-                        Parent and child - parent waits for child to exit
-                    </NavLink>
-                    <NavLink href={'#scene-five'}>Children of children</NavLink>
-                </NavMenu>
+                <HeaderBody>
+                    <h1>Animated Components</h1>
+                    <HeaderSubText>
+                        Animate a single React component or orchestrate animations among a
+                        collection of React components.
+                    </HeaderSubText>
+                    <CodeBlock language={'bash'}>
+                        npm install animated-components-react --save
+                    </CodeBlock>
+                    <NavMenu>
+                        <NavMenuText>Jump to an example:</NavMenuText>
+                        <NavLink href={'#scene-one'}>Single Component</NavLink>
+                        <NavLink href={'#scene-two'}>Parent and child - no orchestration</NavLink>
+                        <NavLink href={'#scene-three'}>
+                            Parent and child - child waits for parent to enter
+                        </NavLink>
+                        <NavLink href={'#scene-four'}>
+                            Parent and child - parent waits for child to exit
+                        </NavLink>
+                        <NavLink href={'#scene-five'}>Children of children</NavLink>
+                    </NavMenu>
+                </HeaderBody>
             </Header>
             <Body>
                 <NavPages>
