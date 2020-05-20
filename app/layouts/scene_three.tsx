@@ -35,7 +35,36 @@ const Buttons = styled.div`
 
 const SceneThree: React.FC = () => (
     <>
-        <Code>`test`</Code>
+        <Code>{`
+import {(Animate, Animatable, predicates)} from 'animated-components-react'; 
+
+export default ({isVisibleParent, isVisibleChild, animateIn, animateOut, parentStyles, childStyles}) => (
+    <Animate
+        visible={isVisibleParent}
+        when={[
+            [predicates.isVisible, animateIn],
+            [predicates.isHidden, animateOut]
+        ]}
+    >
+        <Animatable facc styles={parentStyles}>
+            {animationBinding => (
+                <Animate
+                    visible={isVisibleChild}
+                    enterAfterParentFinish
+                    animationBinding={animationBinding}
+                    when={[
+                        [predicates.isVisible, animateIn],
+                        [predicates.isHidden, animateOut]
+                    ]}
+                >
+                    <Animatable styles={childStyles}/>
+                </Animate>
+            )}
+        </Animatable>
+    </Animate>
+});
+        
+        `}</Code>
         <Playground>
             <VisibleToggle>
                 {({isVisible: isVisibleOne, toggleVisible: toggleVisibleOne}) => (
@@ -61,21 +90,19 @@ const SceneThree: React.FC = () => (
                                 >
                                     <ParentAnimatable facc>
                                         {animationBinding => (
-                                            <div>
-                                                <Animate
-                                                    id={'scene-three-child'}
-                                                    name={'child'}
-                                                    visible={isVisibleTwo}
-                                                    enterAfterParentFinish
-                                                    animationBinding={animationBinding}
-                                                    when={[
-                                                        [predicates.isVisible, animateIn],
-                                                        [predicates.isHidden, animateOut]
-                                                    ]}
-                                                >
-                                                    <ChildAnimatable />
-                                                </Animate>
-                                            </div>
+                                            <Animate
+                                                id={'scene-three-child'}
+                                                name={'child'}
+                                                visible={isVisibleTwo}
+                                                enterAfterParentFinish
+                                                animationBinding={animationBinding}
+                                                when={[
+                                                    [predicates.isVisible, animateIn],
+                                                    [predicates.isHidden, animateOut]
+                                                ]}
+                                            >
+                                                <ChildAnimatable />
+                                            </Animate>
                                         )}
                                     </ParentAnimatable>
                                 </Animate>

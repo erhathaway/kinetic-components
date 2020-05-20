@@ -39,7 +39,7 @@ const SceneTwo: React.FC = () => (
             {`
 import {(Animate, Animatable, predicates)} from 'animated-components-react'; 
 
-export default ({(isVisibleParent, isVisibleChild, animateIn, animateOut, styles)}) => (
+export default ({isVisibleParent, isVisibleChild, animateIn, animateOut, parentStyles, childStyles}) => (
     <Animate
         visible={isVisibleParent}
         when={[
@@ -47,7 +47,7 @@ export default ({(isVisibleParent, isVisibleChild, animateIn, animateOut, styles
             [predicates.isHidden, animateOut]
         ]}
     >
-        <ParentAnimatable>
+        <Animatable styles={parentStyles}>
             <Animate
                 visible={isVisibleChild}
                 when={[
@@ -55,9 +55,9 @@ export default ({(isVisibleParent, isVisibleChild, animateIn, animateOut, styles
                     [predicates.isHidden, animateOut]
                 ]}
             >
-                <ChildAnimatable />
+                <Animatable styles={childStyles} />
             </Animate>
-        </ParentAnimatable>
+        </Animatable>
     </Animate>
 });
             `}
