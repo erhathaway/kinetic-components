@@ -49,10 +49,16 @@ const HeaderFiller = styled(Header)`
 
 const HeaderBody = styled.div`
     padding: 40px;
+    padding-top: 0px;
     @media (max-width: ${VERTICAL_SCREEN_WIDTH}) {
         // max-width: 400px;
         position: relative;
     }
+`;
+
+const HeaderTitle = styled.h1`
+    // background-color: coral;
+    padding: 10px;
 `;
 
 const HeaderSubText = styled.div`
@@ -74,9 +80,11 @@ const NavMenu = styled.nav`
 const NavMenuText = styled.div`
     margin-top: 30px;
     margin-bottom: 10px;
-    background-color: Lavender;
+    // background-color: Lavender;
+    color: black;
     width: 190px;
     padding: 5px;
+    font-size: 10px;
 `;
 const NavLink = styled.a`
     font-size: 12px;
@@ -99,9 +107,31 @@ const Github = styled.div`
     padding: 10px;
     padding-left: 30px;
     display: flex;
-    // justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    font-size: 10px;
+    background-color: #ffffdb;
+    font-size: 12px;
+    color: black;
+
+    :hover {
+        background-color: yellow;
+    }
+    // border-top: 1px solid black;
+`;
+
+const GithubText = styled.a`
+    font-size: 12px;
+    color: black !important;
+    padding-left: 10px;
+    // text-decoration: none;
+`;
+
+const GithubIcon = styled.a`
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 20px;
+    color: black !important;
+    text-decoration: none;
 `;
 
 const Body = styled.div`
@@ -157,7 +187,7 @@ const Layout = (): JSX.Element => {
             <HeaderFiller />
             <Header>
                 <HeaderBody>
-                    <h1>Animated Components</h1>
+                    <HeaderTitle>Animated Components</HeaderTitle>
                     <HeaderSubText>
                         Animate a single React component or orchestrate animations among a
                         collection of React components.
@@ -181,6 +211,16 @@ const Layout = (): JSX.Element => {
                         <NavLink href={'#scene-five'}>Children of children</NavLink>
                     </NavMenu>
                 </HeaderBody>
+                <Github>
+                    More at:
+                    <GithubText href="https://github.com/erhathaway/animated-components-react">
+                        github.com/erhathaway/animated-components-react
+                    </GithubText>
+                    <GithubIcon
+                        className="fab fa-github"
+                        href="https://github.com/erhathaway/animated-components-react"
+                    ></GithubIcon>
+                </Github>
             </Header>
             <Body>
                 <NavPages>

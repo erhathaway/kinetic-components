@@ -19,7 +19,7 @@
         "prettier:fix": "prettier \"{src,app}/**/*\" --write",
         "prettier:check": "prettier \"{src,app}/**/*\" --check",
         "type-check": "tsc --noEmit",
-        "test": "jest",
+        "test": "jest --passWithNoTests",
         "all-ci": "npm run test && npm run lint && npm run prettier:check && npm run type-check && npm run build"
     },
     "repository": {
