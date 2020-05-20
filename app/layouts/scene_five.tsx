@@ -42,7 +42,7 @@ const Buttons = styled.div`
 const SceneFive: React.FC = () => (
     <>
         <Code>{`
-import {(Animate, Animatable, predicates)} from 'animated-components-react'; 
+import {Animate, Animatable, predicates} from 'animated-components-react';
 
 export default ({isVisibleParent, isVisibleChildOne, isVisibleChildTwo, animateIn, animateOut, parentStyles, childOneStyles, childTwoStyles}) => (
     <Animate
