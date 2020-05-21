@@ -20,8 +20,8 @@ const Container = styled.div`
 const Button = styled.div`
     height: 100%;
     width: 50px;
-    background-color: ${props =>
-        (props as {isActive: boolean}).isActive ? 'cornflowerblue' : '#ffffdb'};
+    background-color: ${(props: {isActive: boolean}) =>
+        props.isActive ? 'cornflowerblue' : '#ffffdb'};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,8 +34,7 @@ const Button = styled.div`
     :active {
         background-color: cornflowerblue;
     }
-    ${props =>
-        (props as {isActive: boolean}).isActive && '    box-shadow: inset 1px 1px 3px #222;    '}
+    ${(props: {isActive: boolean}) => props.isActive && 'box-shadow: inset 1px 1px 3px #222;'}
 `;
 const JSButton = styled(Button)`
     border-bottom-left-radius: 6px;
