@@ -310,16 +310,7 @@ const Animate = <PredicateState, TriggerState>({
             animationResult &&
             (Array.isArray(animationResult) || typeof animationResult === 'string')
         ) {
-            // const d = document.getElementById(ref.id);
-
-            // d &&
-            //     d.addEventListener('animationstart', () => {
-            //         console.log('Animation started');
-            //     });
-            // d &&
-            //     d.addEventListener('animationend', () => {
-            //         console.log('Animation ended');
-            //     });
+            // eslint-disable-next-line
             const createFinishedPromise = (): Promise<any> => {
                 const d = document.getElementById(ref.id);
 
