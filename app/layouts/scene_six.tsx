@@ -6,7 +6,7 @@ const SceneSix: React.FC = () => (
     <>
         <Code>
             {`
-import {predicates, Animate, AnimationCtx, AnimationResult} from 'animated-components-react';
+import {predicates, Animate, AnimationCtx, AnimationResult} from 'kinetic-components';
 import anime from 'animejs';
 
 export default ({isVisible, customState, isBouncing, shouldBounce, animateBounce, styles}) => (
@@ -81,7 +81,7 @@ export default SceneSix;
 //     <>
 //         <Code>
 //             {`
-// import {Animate, Animatable, predicates} from 'animated-components-react';
+// import {Animate, Animatable, predicates} from 'kinetic-components';
 
 // export default ({isVisible, animateIn, animateOut, styles}) => (
 //     <Animate

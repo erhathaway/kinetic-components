@@ -41,7 +41,7 @@ const SceneOne: React.FC = () => (
     <>
         <Code>
             {`
-import {Animate, Animatable, predicates} from 'animated-components-react';
+import {Animate, Animatable, predicates} from 'kinetic-components';
 
 export default ({isVisible, animateIn, animateOut, styles}) => (
     <Animate
