@@ -9,12 +9,12 @@ const Animatable = styled(StyledAnimatable)`
     background-color: rgb(155, 255, 181);
 `;
 
-const animateIn = (ctx: AnimationCtx): AnimationResult =>
-    anime({
-        targets: `#${ctx.node.id}`,
-        translateX: [0, '50%'],
-        opacity: [0, 1]
-    });
+const animateIn = (): AnimationResult => ['animate__animated', 'animate__bounce'];
+// anime({
+//     targets: `#${ctx.node.id}`,
+//     translateX: [0, '50%'],
+//     opacity: [0, 1]
+// });
 
 const animateOut = (ctx: AnimationCtx): AnimationResult =>
     anime({

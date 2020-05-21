@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useId} from 'react-id-generator';
 
 import AnimationControl from './animate_control';
-import {AnimationState, AnimateProps, AnimationRun, CurrentState} from './types';
+import {AnimationState, AnimateProps, AnimationRun, CurrentState, IAnimationResult} from './types';
 import {
     setStateForFinishedAction,
     setStateForNewAction,
@@ -11,7 +11,8 @@ import {
     setCurrentStateToRunningForActionCount,
     setCurrentStateToFinishedForActionCount,
     setCurrentStateToInitializingForActionCount,
-    setChildStateForActionCount
+    setChildStateForActionCount,
+    addClassNamesToCurrentStateForActionCount
 } from './animation_state_transforms';
 import {createLogger, browserTransport} from './logger';
 
@@ -72,7 +73,8 @@ const Animate = <PredicateState, TriggerState>({
         hasRunForCycle: false,
         triggerState: triggerState || undefined,
         visible: false,
-        childStates: {}
+        childStates: {},
+        classNames: []
     });
 
     const specificAnimateLogger = namedAnimationLogger.child(eState.currentState);
@@ -304,8 +306,43 @@ const Animate = <PredicateState, TriggerState>({
         if (hasRun) {
             setCurrentStateToRunningForActionCount(setEState);
         }
-        if (animationResult && animationResult.finished) {
-            animationControl.createOnFinishPromise(animationResult.finished);
+        if (
+            animationResult &&
+            (Array.isArray(animationResult) || typeof animationResult === 'string')
+        ) {
+            // const d = document.getElementById(ref.id);
+
+            // d &&
+            //     d.addEventListener('animationstart', () => {
+            //         console.log('Animation started');
+            //     });
+            // d &&
+            //     d.addEventListener('animationend', () => {
+            //         console.log('Animation ended');
+            //     });
+            const createFinishedPromise = (): Promise<any> => {
+                const d = document.getElementById(ref.id);
+
+                if (!d) {
+                    return Promise.resolve();
+                }
+                return new Promise(resolve => {
+                    const handleEvent = (): void => {
+                        d.removeEventListener('animationend', handleEvent);
+                        resolve();
+                    };
+                    addEventListener('animationend', handleEvent);
+                });
+            };
+            animationControl.createOnFinishPromise(createFinishedPromise());
+
+            addClassNamesToCurrentStateForActionCount(
+                setEState,
+                typeof animationResult === 'string' ? [animationResult] : animationResult
+            );
+            // TODO change these IAnimationResult castings to type guards
+        } else if (animationResult && (animationResult as IAnimationResult).finished) {
+            animationControl.createOnFinishPromise((animationResult as IAnimationResult).finished);
         } else {
             animateEffectLogger.debug('No finish promises found. Setting state to finished');
 
@@ -360,10 +397,12 @@ const Animate = <PredicateState, TriggerState>({
         }
         setRef(ref);
     };
+
     const realChildren = children
         ? React.cloneElement(children, {
               ref: setRefOfAnimateable,
               id: uuid,
+              className: eState.classNames,
               animationBinding: {
                   notifyParentOfState: setChildStateForActionCount(setEState),
                   parentState: eState.currentState,
