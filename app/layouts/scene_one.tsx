@@ -17,8 +17,8 @@ const Animatable = styled(StyledAnimatable)`
     background-color: rgb(155, 255, 181);
 `;
 
-const animateInCSS = (): AnimationResult => ['animate__animated', 'animate__bounce'];
-const animateOutCSS = (): AnimationResult => ['animate__animated', 'animate__bounce'];
+const animateInCSS = (): AnimationResult => ['animate__animated', 'animate__fadeInRight'];
+const animateOutCSS = (): AnimationResult => ['animate__animated', 'animate__fadeOutRight'];
 
 const animateInJS = (ctx: AnimationCtx): AnimationResult =>
     anime({
