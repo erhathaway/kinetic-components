@@ -10,7 +10,8 @@ import {
     Playground,
     VisibleToggle,
     JSCSSButtons,
-    JSCSSToggle
+    JSCSSToggle,
+    PlaygroundInstructions
 } from '../components';
 
 const animateInCSS = (): AnimationResult => ['animate__animated', 'animate__fadeInRight'];
@@ -73,6 +74,7 @@ export default ({isVisibleParent, isVisibleChild, animateIn, animateOut, parentS
 });
             `}
         </Code>
+        <PlaygroundInstructions />
         <Playground>
             <JSCSSToggle>
                 {({isJS, setIsJS, setIsCSS}) => (

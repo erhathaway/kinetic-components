@@ -10,7 +10,8 @@ import {
     Playground,
     VisibleToggle,
     JSCSSButtons,
-    JSCSSToggle
+    JSCSSToggle,
+    PlaygroundInstructions
 } from '../components';
 
 const Animatable = styled(StyledAnimatable)`
@@ -57,6 +58,7 @@ export default ({isVisible, animateIn, animateOut, styles}) => (
 );
 `}
         </Code>
+        <PlaygroundInstructions />
         <Playground>
             <JSCSSToggle>
                 {({isJS, setIsJS, setIsCSS}) => (
