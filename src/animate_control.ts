@@ -16,20 +16,16 @@ export default class AnimationControl {
     };
 
     createOnFinishPromise = (animationFinishPromise: Promise<any>): Promise<any> => {
-        console.log('** CREATING ON FINISH');
         let hasCanceled = false;
         this._onFinishPromise = new Promise((fulfill, _reject) => {
             this._cancel = () => {
                 fulfill(pendingPromise());
-                console.log('** FULLFILLING CANCEL');
                 hasCanceled = true;
             };
 
             try {
                 animationFinishPromise
                     .then(() => {
-                        console.log('** FULLFILLING PROMISEE!!!');
-
                         !hasCanceled && fulfill();
                     })
                     .then(() => {

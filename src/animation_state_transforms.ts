@@ -38,7 +38,8 @@ export const setStateForNewAction = <TriggerState extends any>(
             triggerState,
             hasRunForCycle,
             childStates,
-            visible
+            visible,
+            classNames: []
         };
     });
 };
@@ -94,6 +95,16 @@ export const setCurrentStateToInitializingForActionCount = <TriggerState extends
     setEState(current => ({
         ...current,
         currentState: 'initalizing'
+    }));
+};
+
+export const addClassNamesToCurrentStateForActionCount = <TriggerState extends any>(
+    setEState: React.Dispatch<React.SetStateAction<CurrentState<TriggerState>>>,
+    classNames: string[]
+): void => {
+    setEState(current => ({
+        ...current,
+        classNames
     }));
 };
 

@@ -3,20 +3,32 @@ import anime from 'animejs';
 import styled from 'styled-components';
 
 import {predicates, Animate, AnimationCtx, AnimationResult} from '../../src';
-import {StyledAnimatable, Button, Code, Playground, VisibleToggle} from '../components';
+import {
+    StyledAnimatable,
+    Button,
+    Code,
+    Playground,
+    VisibleToggle,
+    JSCSSButtons,
+    JSCSSToggle,
+    PlaygroundInstructions
+} from '../components';
 
 const Animatable = styled(StyledAnimatable)`
     background-color: rgb(155, 255, 181);
 `;
 
-const animateIn = (ctx: AnimationCtx): AnimationResult =>
+const animateInCSS = (): AnimationResult => ['animate__animated', 'animate__fadeInRight'];
+const animateOutCSS = (): AnimationResult => ['animate__animated', 'animate__fadeOutRight'];
+
+const animateInJS = (ctx: AnimationCtx): AnimationResult =>
     anime({
         targets: `#${ctx.node.id}`,
         translateX: [0, '50%'],
         opacity: [0, 1]
     });
 
-const animateOut = (ctx: AnimationCtx): AnimationResult =>
+const animateOutJS = (ctx: AnimationCtx): AnimationResult =>
     anime({
         targets: `#${ctx.node.id}`,
         translateX: ['50%', 0],
@@ -46,26 +58,42 @@ export default ({isVisible, animateIn, animateOut, styles}) => (
 );
 `}
         </Code>
+        <PlaygroundInstructions />
         <Playground>
-            <VisibleToggle>
-                {({isVisible, toggleVisible}) => (
+            <JSCSSToggle>
+                {({isJS, setIsJS, setIsCSS}) => (
                     <>
-                        <Button onClick={toggleVisible}>{`${isVisible ? 'hide' : 'show'}`}</Button>
-                        <Animate
-                            name={'test'}
-                            visible={isVisible}
-                            when={[
-                                [predicates.isVisible, animateIn],
-                                [predicates.isHidden, animateOut]
-                            ]}
-                        >
-                            <Animatable>
-                                <h4>{`Look at me. I'm animated!`}</h4>
-                            </Animatable>
-                        </Animate>
+                        <JSCSSButtons setIsJS={setIsJS} setIsCSS={setIsCSS} isJS={isJS} />
+                        <VisibleToggle>
+                            {({isVisible, toggleVisible}) => (
+                                <>
+                                    <Button onClick={toggleVisible}>{`${
+                                        isVisible ? 'hide' : 'show'
+                                    }`}</Button>
+                                    <Animate
+                                        name={'test'}
+                                        visible={isVisible}
+                                        when={[
+                                            [
+                                                predicates.isVisible,
+                                                isJS ? animateInJS : animateInCSS
+                                            ],
+                                            [
+                                                predicates.isHidden,
+                                                isJS ? animateOutJS : animateOutCSS
+                                            ]
+                                        ]}
+                                    >
+                                        <Animatable>
+                                            <h4>{`Look at me. I'm animated!`}</h4>
+                                        </Animatable>
+                                    </Animate>
+                                </>
+                            )}
+                        </VisibleToggle>
                     </>
                 )}
-            </VisibleToggle>
+            </JSCSSToggle>
         </Playground>
     </>
 );

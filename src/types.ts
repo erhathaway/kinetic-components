@@ -23,6 +23,7 @@ export type CurrentState<TriggerState> = {
         [childId: string]: AnimationState | undefined;
     };
     visible: boolean;
+    classNames: string[];
 };
 
 export type Predicate = <PS extends any, TS extends any>(
@@ -42,7 +43,10 @@ export interface IAnimationResult {
 
 export type AnimationRun = {hasRun: boolean; ctx: AnimationCtx; animationResult: AnimationResult};
 
-export type AnimationResult = IAnimationResult | null;
+/**
+ * IAnimationResult for custom JS animations; string | string[] for CSS animation (these are class names)
+ */
+export type AnimationResult = IAnimationResult | string | string[] | null;
 
 export type PredicateAnimation = (ctx: AnimationCtx) => AnimationResult;
 

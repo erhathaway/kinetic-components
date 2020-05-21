@@ -7,7 +7,7 @@ const Playground = styled.div`
     border: 1px solid black;
     border-radius: 6px;
     background: lightgrey;
-    height: 220px;
+    height: 250px;
 `;
 
 export default Playground;
