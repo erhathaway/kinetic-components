@@ -9,6 +9,20 @@
     "files": [
         "dist"
     ],
+    "keywords": [
+        "animation",
+        "animations",
+        "animatable",
+        "orchestration",
+        "react",
+        "component",
+        "predicate animation",
+        "animejs",
+        "css animations",
+        "animate.style",
+        "sync",
+        "router primitives"
+    ],
     "scripts": {
         "app:start": "parcel app/index.html --out-dir build_app --no-cache --no-autoinstall",
         "app:build": "npm run clean && parcel build app/index.html --out-dir docs --no-autoinstall --no-source-maps --public-url ./ ",
