@@ -5,14 +5,14 @@ import styled from 'styled-components';
 import {predicates, Animate, AnimationCtx, AnimationResult} from '../../src';
 import {StyledAnimatable, Button, Code, Playground, VisibleToggle} from '../components';
 
-const animateIn = (ctx: AnimationCtx): AnimationResult =>
+const animateInJS = (ctx: AnimationCtx): AnimationResult =>
     anime({
         targets: `#${ctx.node.id}`,
         translateX: [0, '50%'],
         opacity: [0, 1]
     });
 
-const animateOut = (ctx: AnimationCtx): AnimationResult =>
+const animateOutJS = (ctx: AnimationCtx): AnimationResult =>
     anime({
         targets: `#${ctx.node.id}`,
         translateX: ['50%', 0],
@@ -81,8 +81,8 @@ export default ({isVisibleParent, isVisibleChild, animateIn, animateOut, parentS
                                     name={'parent'}
                                     visible={isVisibleOne}
                                     when={[
-                                        [predicates.isVisible, animateIn],
-                                        [predicates.isHidden, animateOut]
+                                        [predicates.isVisible, animateInJS],
+                                        [predicates.isHidden, animateOutJS]
                                     ]}
                                 >
                                     <ParentAnimatable>
@@ -90,8 +90,8 @@ export default ({isVisibleParent, isVisibleChild, animateIn, animateOut, parentS
                                             name={'child'}
                                             visible={isVisibleTwo}
                                             when={[
-                                                [predicates.isVisible, animateIn],
-                                                [predicates.isHidden, animateOut]
+                                                [predicates.isVisible, animateInJS],
+                                                [predicates.isHidden, animateOutJS]
                                             ]}
                                         >
                                             <ChildAnimatable />

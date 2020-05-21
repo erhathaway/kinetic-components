@@ -4,7 +4,7 @@ import Highlight from 'react-highlight.js';
 
 const CodeContainer = styled.div`
     position: relative;
-    overflow-y: scroll;
+    // overflow-y: scroll;
 `;
 const CodeBlock = styled(Highlight)`
     margin-bottom: 20px;

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import {predicates, Animate, AnimationCtx, AnimationResult} from '../../src';
 import {StyledAnimatable, Button, Code, Playground, VisibleToggle} from '../components';
 
-const animateIn = (ctx: AnimationCtx): AnimationResult =>
+const animateInJS = (ctx: AnimationCtx): AnimationResult =>
     anime({
         targets: `#${ctx.node.id}`,
         translateX: [0, '50%'],
@@ -14,7 +14,7 @@ const animateIn = (ctx: AnimationCtx): AnimationResult =>
         duration: 120
     });
 
-const animateOut = (ctx: AnimationCtx): AnimationResult =>
+const animateOutJS = (ctx: AnimationCtx): AnimationResult =>
     anime({
         targets: `#${ctx.node.id}`,
         translateX: ['50%', 0],
@@ -116,8 +116,8 @@ export default ({isVisibleParent, isVisibleChildOne, isVisibleChildTwo, animateI
                                             visible={isVisibleOne}
                                             exitAfterChildFinish={['scene-five-child-one']}
                                             when={[
-                                                [predicates.isVisible, animateIn],
-                                                [predicates.isHidden, animateOut]
+                                                [predicates.isVisible, animateInJS],
+                                                [predicates.isHidden, animateOutJS]
                                             ]}
                                         >
                                             <ParentAnimatable>
@@ -132,8 +132,8 @@ export default ({isVisibleParent, isVisibleChildOne, isVisibleChildTwo, animateI
                                                         enterAfterParentFinish
                                                         animationBinding={parentAnimationBinding}
                                                         when={[
-                                                            [predicates.isVisible, animateIn],
-                                                            [predicates.isHidden, animateOut]
+                                                            [predicates.isVisible, animateInJS],
+                                                            [predicates.isHidden, animateOutJS]
                                                         ]}
                                                     >
                                                         <FirstChildAnimatable>
@@ -149,11 +149,11 @@ export default ({isVisibleParent, isVisibleChildOne, isVisibleChildTwo, animateI
                                                                     when={[
                                                                         [
                                                                             predicates.isVisible,
-                                                                            animateIn
+                                                                            animateInJS
                                                                         ],
                                                                         [
                                                                             predicates.isHidden,
-                                                                            animateOut
+                                                                            animateOutJS
                                                                         ]
                                                                     ]}
                                                                 >
