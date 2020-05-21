@@ -60,6 +60,8 @@ const HeaderBody = styled.div`
 
 const HeaderTitle = styled.h1`
     // background-color: coral;
+    display: flex;
+    align-items: center;
     padding: 10px;
 `;
 
@@ -130,6 +132,7 @@ const GithubText = styled.a`
     font-size: 12px;
     color: black !important;
     padding-left: 10px;
+    padding-right: 30px;
     // text-decoration: none;
 `;
 
@@ -194,7 +197,13 @@ const Layout = (): JSX.Element => {
             <HeaderFiller />
             <Header>
                 <HeaderBody>
-                    <HeaderTitle>Animated Components</HeaderTitle>
+                    <HeaderTitle>
+                        Animated Components{' '}
+                        <GithubIcon
+                            className="fab fa-github"
+                            href="https://github.com/erhathaway/animated-components-react"
+                        ></GithubIcon>
+                    </HeaderTitle>
                     <HeaderSubText>
                         Animate a single React component or orchestrate animations among a
                         collection of React components.
@@ -225,10 +234,10 @@ const Layout = (): JSX.Element => {
                     <GithubText href="https://github.com/erhathaway/animated-components-react">
                         github.com/erhathaway/animated-components-react
                     </GithubText>
-                    <GithubIcon
+                    {/* <GithubIcon
                         className="fab fa-github"
                         href="https://github.com/erhathaway/animated-components-react"
-                    ></GithubIcon>
+                    ></GithubIcon> */}
                 </Github>
             </Header>
             <Body>
