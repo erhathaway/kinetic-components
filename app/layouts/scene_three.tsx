@@ -21,7 +21,9 @@ const animateInJS = (ctx: AnimationCtx): AnimationResult =>
     anime({
         targets: `#${ctx.node.id}`,
         translateX: [0, '50%'],
-        opacity: [0, 1]
+        opacity: [0, 1],
+        easing: 'linear',
+        duration: 100
     });
 
 const animateOutJS = (ctx: AnimationCtx): AnimationResult =>

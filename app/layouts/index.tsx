@@ -69,6 +69,10 @@ const HeaderSubText = styled.div`
     font-size: 14px;
     color: black;
     padding-bottom: 20px;
+    @media (max-height: 1000px) {
+        font-size: 12px;
+        padding-bottom: 5px;
+    }
 `;
 
 const HeaderCodeBlock = styled(Highlight)`
