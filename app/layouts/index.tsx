@@ -2,11 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import Highlight from 'react-highlight.js';
 
+import SceneZero from './scene_zero';
 import SceneOne from './scene_one';
 import SceneTwo from './scene_two';
 import SceneThree from './scene_three';
 import SceneFour from './scene_four';
 import SceneFive from './scene_five';
+import SceneSix from './scene_six';
 
 const VERTICAL_SCREEN_WIDTH = '1050px';
 const Container = styled.div`
@@ -68,6 +70,11 @@ const HeaderSubText = styled.div`
 `;
 
 const HeaderCodeBlock = styled(Highlight)`
+    margin-top: 20px;
+    margin-bottom: 10px;
+`;
+
+const CodeBlock = styled(Highlight)`
     margin-top: 20px;
     margin-bottom: 10px;
 `;
@@ -136,7 +143,7 @@ const GithubIcon = styled.a`
 
 const Body = styled.div`
     width: calc(100vw - 120px);
-    max-width: 550px;
+    max-width: 580px;
     padding: 60px;
 
     @media (max-width: ${VERTICAL_SCREEN_WIDTH}) {
@@ -200,6 +207,7 @@ const Layout = (): JSX.Element => {
                     </HeaderCodeBlock>
                     <NavMenu>
                         <NavMenuText>Jump to an example:</NavMenuText>
+                        <NavLink href={'#scene-zero'}>CSS or JS Animations</NavLink>
                         <NavLink href={'#scene-one'}>Single Component</NavLink>
                         <NavLink href={'#scene-two'}>Parent and child - no orchestration</NavLink>
                         <NavLink href={'#scene-three'}>
@@ -209,6 +217,7 @@ const Layout = (): JSX.Element => {
                             Parent and child - parent waits for child to exit
                         </NavLink>
                         <NavLink href={'#scene-five'}>Children of children</NavLink>
+                        <NavLink href={'#scene-six'}>Custom predicates and trigger states</NavLink>
                     </NavMenu>
                 </HeaderBody>
                 <Github>
@@ -224,13 +233,41 @@ const Layout = (): JSX.Element => {
             </Header>
             <Body>
                 <NavPages>
+                    <Scene id="scene-zero">
+                        <SceneTitle>
+                            <SceneTitleMain>Use CSS or JS animations</SceneTitleMain>
+                        </SceneTitle>
+                        <SceneDescription>
+                            Animations are controlled with the `when` prop. This props takes an
+                            array of `predicate` - `animation function` pairs. The predicate
+                            determines if the animation function will run for the given `visible`
+                            prop.
+                            <br />
+                            <br />
+                            The animation function has the signature:
+                            <br />
+                            <CodeBlock language={'typescript'} styles={{fontSize: '10px'}}>
+                                {`(ctx: {node: HTMLElement}) => string | string[] | {finished: Promise}`}
+                            </CodeBlock>
+                            {` To use CSS animations return the className(s) you want appended to the
+                            \`Animatable\` component's element.
+                           `}
+                            <br />
+                            <br />
+                            To use JS animations pass the HTML element into your animation library
+                            of choice and return a promise that resolves when the animation is
+                            finished.
+                        </SceneDescription>
+                        <SceneDivider />
+                        <SceneZero />
+                    </Scene>
                     <Scene id="scene-one">
                         <SceneTitle>
                             <SceneTitleMain>Single component</SceneTitleMain>
                         </SceneTitle>
                         <SceneDescription>
                             Animate a single component using the `Animate` and `Animatable`
-                            components
+                            components. The `Animate` component controls the `Animatable` component.
                         </SceneDescription>
                         <SceneDivider />
                         <SceneOne />
@@ -256,6 +293,10 @@ const Layout = (): JSX.Element => {
                             <b>Uses props: </b>
                             <Prop /> - animationBinding
                             <Prop />- enterAfterParentFinish
+                            <br />
+                            <br />
+                            Using `animationBindings`, an `Animatable` can be bound to parent and
+                            child animation contexts.
                         </SceneDescription>
                         <SceneDivider />
                         <SceneThree />
@@ -284,6 +325,37 @@ const Layout = (): JSX.Element => {
                         </SceneDescription>
                         <SceneDivider />
                         <SceneFive />
+                    </Scene>
+                    <Scene id="scene-six">
+                        <SceneTitle>
+                            <SceneTitleMain>Custom predicates and trigger states</SceneTitleMain>
+                        </SceneTitle>
+                        <SceneDescription>
+                            The `Animate` component will run whenever the required `visible` prop or
+                            optional `triggerState` prop changes. When the `Animate` component runs,
+                            it iterates over the predicate - animationFn pairings in the `when`
+                            prop, stopping at the first pairing whose predicate returns `true` and
+                            then calling the associated animationFn.
+                            <br />
+                            <br />
+                            The `Animate` component also takes an optional `predicateState` prop.
+                            This prop holds state that is passed into the predicate when called.
+                            <br />
+                            <br />
+                            The predicate function has the signature:
+                            <br />
+                            <CodeBlock language={'typescript'} styles={{fontSize: '8px'}}>
+                                {`(predicateState: any, {triggerState, visible}: {triggerState: any; visible: boolean}) => boolean`}
+                            </CodeBlock>
+                            <br />
+                            <br />A shallow diff is done on the `triggerState` with each change to
+                            determine if the Animate component should run. By coupling custom
+                            trigger states with custom predicates you can make animations that go
+                            beyond the normal show and hide animations. For example, you can add
+                            micro bounce effects when some scene data changes.
+                        </SceneDescription>
+                        <SceneDivider />
+                        <SceneSix />
                     </Scene>
                 </NavPages>
             </Body>

@@ -14,7 +14,7 @@ const CodeBlock = styled(Highlight)`
 const Code: React.FC<{children: string}> = ({children}) => {
     return (
         <CodeContainer>
-            <CodeBlock language={'javascript'}>{children}</CodeBlock>
+            <CodeBlock language={'typescript'}>{children}</CodeBlock>
         </CodeContainer>
     );
 };
