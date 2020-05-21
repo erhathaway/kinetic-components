@@ -202,10 +202,10 @@ const Layout = (): JSX.Element => {
             <Header>
                 <HeaderBody>
                     <HeaderTitle>
-                        Animated Components{' '}
+                        Kinetic Components{' '}
                         <GithubIcon
                             className="fab fa-github"
-                            href="https://github.com/erhathaway/animated-components-react"
+                            href="https://github.com/erhathaway/kinetic-components"
                         ></GithubIcon>
                     </HeaderTitle>
                     <HeaderSubText>
@@ -216,7 +216,7 @@ const Layout = (): JSX.Element => {
                         Use CSS animations or your favorite JS animation library!
                     </HeaderSubText>
                     <HeaderCodeBlock language={'bash'}>
-                        npm install animated-components-react --save
+                        npm install kinetic-components --save
                     </HeaderCodeBlock>
                     <NavMenu>
                         <NavMenuText>Jump to an example:</NavMenuText>
@@ -235,12 +235,12 @@ const Layout = (): JSX.Element => {
                 </HeaderBody>
                 <Github>
                     More at:
-                    <GithubText href="https://github.com/erhathaway/animated-components-react">
-                        github.com/erhathaway/animated-components-react
+                    <GithubText href="https://github.com/erhathaway/kinetic-components">
+                        github.com/erhathaway/kinetic-components
                     </GithubText>
                     {/* <GithubIcon
                         className="fab fa-github"
-                        href="https://github.com/erhathaway/animated-components-react"
+                        href="https://github.com/erhathaway/kinetic-components"
                     ></GithubIcon> */}
                 </Github>
             </Header>

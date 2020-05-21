@@ -1,6 +1,6 @@
 {
-    "name": "animated-components-react",
-    "version": "0.3.0",
+    "name": "kinetic-components",
+    "version": "0.3.1",
     "description": "Use CSS animations or your favorite JS animation library to animate a single React component or orchestrate animations amongst a collection of React components.",
     "main": "./dist/index.cjs.js",
     "module": "./dist/index.es.js",
@@ -8,6 +8,20 @@
     "types": "./dist/src/index.d.ts",
     "files": [
         "dist"
+    ],
+    "keywords": [
+        "animation",
+        "animations",
+        "animatable",
+        "orchestration",
+        "react",
+        "component",
+        "predicate animation",
+        "animejs",
+        "css animations",
+        "animate.style",
+        "sync",
+        "router primitives"
     ],
     "scripts": {
         "app:start": "parcel app/index.html --out-dir build_app --no-cache --no-autoinstall",
@@ -24,14 +38,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/erhathaway/animated-components-react.git"
+        "url": "git+https://github.com/erhathaway/kinetic-components.git"
     },
     "author": "Ethan Hathaway",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/erhathaway/animated-components-react/issues"
+        "url": "https://github.com/erhathaway/kinetic-components/issues"
     },
-    "homepage": "https://github.com/erhathaway/animated-components-react#readme",
+    "homepage": "https://github.com/erhathaway/kinetic-components#readme",
     "devDependencies": {
         "@rollup/plugin-commonjs": "^11.0.2",
         "@rollup/plugin-node-resolve": "^7.1.1",

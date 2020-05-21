@@ -6,7 +6,7 @@ const SceneOne: React.FC = () => (
     <>
         <Code>
             {`
-import {predicates, Animate, AnimationCtx, AnimationResult} from 'animated-components-react';
+import {predicates, Animate, AnimationCtx, AnimationResult} from 'kinetic-components';
 import anime from 'animejs';
 
 const animateIn = (): AnimationResult => ['animate__animated', 'animate__fadeInRight'];
