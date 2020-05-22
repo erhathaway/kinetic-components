@@ -2,7 +2,7 @@
 
 Kinetic components helps you animate a single React component and orchestrate animations amongst a collection of React components.
 
-Use any animation library you like - including raw CSS!
+Use CSS animations or any JS animation library you like!
 
 # Examples
 
