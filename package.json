@@ -1,6 +1,6 @@
 {
     "name": "kinetic-components",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "description": "Use CSS animations or your favorite JS animation library to animate a single React component or orchestrate animations amongst a collection of React components.",
     "main": "./dist/index.cjs.js",
     "module": "./dist/index.es.js",
