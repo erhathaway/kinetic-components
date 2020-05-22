@@ -43,7 +43,7 @@ const Animate = <PredicateState, TriggerState>({
 
     when,
     children,
-    unMountOnHide: _unMountOnHide,
+    unmountOnHide: _unMountOnHide,
     id,
 
     enterAfterParentStart,

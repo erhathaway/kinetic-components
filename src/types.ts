@@ -64,8 +64,7 @@ export interface AnimateProps<PS, TS> {
     when?: When;
     children?: React.ReactElement;
 
-    unMountOnHide?: boolean;
-    unMountOnShow?: boolean;
+    unmountOnHide?: boolean;
 
     id?: string;
 
