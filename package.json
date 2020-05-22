@@ -87,6 +87,7 @@
         "typescript": "^3.9.0-beta"
     },
     "dependencies": {
+        "beano": "^0.2.2",
         "react": "^16.13.1",
         "react-id-generator": "^3.0.0"
     }

@@ -7,7 +7,6 @@ export const setStateForNewAction = <TriggerState extends any>(
     triggerState: TriggerState,
     visible: boolean
 ): void => {
-    console.log('Setting new state for new action!!!!');
     setEState(current => {
         // increment action count
         const actionCount = current.actionCount + 1;
