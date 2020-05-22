@@ -10,7 +10,7 @@ import SceneFour from './scene_four';
 import SceneFive from './scene_five';
 import SceneSix from './scene_six';
 
-const VERTICAL_SCREEN_WIDTH = '1050px';
+const VERTICAL_SCREEN_WIDTH = '1250px';
 const MOBILE_LARGE_TEXT_WIDTH = '500px';
 
 const Container = styled.div`
