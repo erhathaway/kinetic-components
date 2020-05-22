@@ -12,7 +12,7 @@ All examples can be found in the playground at [https://erhathaway.github.io/kin
 
 Usage is describe in the playground ^
 
-In short, the library works by having a `Animate` and `Animatable` component. The `Animate` component controls the `Animatable` component. You can style the `Animatable` component and children under it (like additional Animate - Animatable nestings). When you change the `Animates` `visible` prop, predicate functions in the `when` prop are evaluated and associated animation functions are run on the nested `Animate` components DOM element.
+In short, the library works by having an `Animate` and `Animatable` component. The `Animate` component controls the `Animatable` component. You can style the `Animatable` component and nest children under it (like additional Animate - Animatable nestings). When you change the `Animates` `visible` prop, predicate functions in the `when` prop are evaluated and associated animation functions are run on the nested `Animate` components DOM element.
 
 You can control how multiple `Animate - Animatable` pairings animate together using `animationBindings`. These allow you to do things like wait on children before leaving or wait on parents before entering.
 
