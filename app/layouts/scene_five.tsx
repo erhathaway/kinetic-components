@@ -126,7 +126,7 @@ export default ({isVisibleParent, isVisibleChildOne, isVisibleChildTwo, animateI
                                                         >{`Parent: ${
                                                             isVisibleOne ? 'hide' : 'show'
                                                         }`}</Button>
-                                                        <Button
+                                                        {/* <Button
                                                             onClick={toggleVisibleTwo}
                                                         >{`Child 1: ${
                                                             isVisibleTwo ? 'hide' : 'show'
@@ -135,7 +135,7 @@ export default ({isVisibleParent, isVisibleChildOne, isVisibleChildTwo, animateI
                                                             onClick={toggleVisibleThree}
                                                         >{`Child 2: ${
                                                             isVisibleThree ? 'hide' : 'show'
-                                                        }`}</Button>
+                                                        }`}</Button> */}
                                                     </Buttons>
 
                                                     <Animate
