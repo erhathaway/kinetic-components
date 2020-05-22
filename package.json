@@ -1,6 +1,6 @@
 {
     "name": "kinetic-components",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "description": "Use CSS animations or your favorite JS animation library to animate a single React component or orchestrate animations amongst a collection of React components.",
     "main": "./dist/index.cjs.js",
     "module": "./dist/index.es.js",
@@ -51,6 +51,7 @@
         "@rollup/plugin-node-resolve": "^7.1.1",
         "@types/animejs": "^3.1.0",
         "@types/jest": "^25.2.1",
+        "@types/logrocket-react": "^3.0.0",
         "@types/react": "^16.9.34",
         "@types/react-dom": "^16.9.5",
         "@types/react-test-renderer": "^16.9.2",

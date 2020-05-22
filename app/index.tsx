@@ -10,6 +10,14 @@ import setupLogRocketReact from 'logrocket-react';
 // after calling LogRocket.init()
 setupLogRocketReact(LogRocket);
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+declare const window: Window & {
+    mixpanel: any;
+    heap: any;
+    ga: any;
+};
+/* eslint-enable @typescript-eslint/no-explicit-any */
+
 LogRocket.getSessionURL(function(sessionURL) {
     window.mixpanel.track('LogRocket', {sessionURL: sessionURL});
 });
