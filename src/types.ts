@@ -1,3 +1,5 @@
+import {ILogger} from 'beano';
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 export type AnimationState = 'restarting' | 'initalizing' | 'running' | 'finished' | 'unmounted';
@@ -53,7 +55,8 @@ export type PredicateAnimation = (ctx: AnimationCtx) => AnimationResult;
 export type When = Array<[Predicates | Predicate, PredicateAnimation]>;
 
 export interface AnimateProps<PS, TS> {
-    name: string; // TODO make me optional in the future
+    name?: string;
+    logger?: ILogger;
     visible: boolean;
     triggerState?: TS;
     predicateState?: PS;
