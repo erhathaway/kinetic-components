@@ -11,6 +11,8 @@ import SceneFive from './scene_five';
 import SceneSix from './scene_six';
 
 const VERTICAL_SCREEN_WIDTH = '1050px';
+const MOBILE_LARGE_TEXT_WIDTH = '500px';
+
 const Container = styled.div`
     display: flex;
     font-family: 'Space Mono', monospace;
@@ -73,6 +75,9 @@ const HeaderSubText = styled.div`
         font-size: 12px;
         padding-bottom: 5px;
     }
+    @media (max-width: ${MOBILE_LARGE_TEXT_WIDTH}) {
+        font-size: 20px;
+    }
 `;
 
 const HeaderCodeBlock = styled(Highlight)`
@@ -98,6 +103,9 @@ const NavMenuText = styled.div`
     width: 190px;
     padding: 5px;
     font-size: 10px;
+    @media (max-width: ${MOBILE_LARGE_TEXT_WIDTH}) {
+        font-size: 16px;
+    }
 `;
 const NavLink = styled.a`
     font-size: 12px;
@@ -105,6 +113,9 @@ const NavLink = styled.a`
     border-radius: 5px;
     :hover {
         background-color: 46b1f3;
+    }
+    @media (max-width: ${MOBILE_LARGE_TEXT_WIDTH}) {
+        font-size: 18px;
     }
 `;
 
@@ -129,6 +140,9 @@ const Github = styled.div`
     :hover {
         background-color: yellow;
     }
+    @media (max-width: ${MOBILE_LARGE_TEXT_WIDTH}) {
+        font-size: 18px;
+    }
     // border-top: 1px solid black;
 `;
 
@@ -138,6 +152,9 @@ const GithubText = styled.a`
     padding-left: 10px;
     padding-right: 30px;
     // text-decoration: none;
+    @media (max-width: ${MOBILE_LARGE_TEXT_WIDTH}) {
+        font-size: 18px;
+    }
 `;
 
 const GithubIcon = styled.a`
@@ -146,6 +163,9 @@ const GithubIcon = styled.a`
     font-size: 20px;
     color: black !important;
     text-decoration: none;
+    @media (max-width: ${MOBILE_LARGE_TEXT_WIDTH}) {
+        font-size: 48px;
+    }
 `;
 
 const Body = styled.div`
@@ -184,6 +204,9 @@ const SceneTitleSub = styled.h3`
 const SceneDescription = styled.div`
     margin-bottom: 30px;
     font-size: 13px;
+    @media (max-width: ${MOBILE_LARGE_TEXT_WIDTH}) {
+        font-size: 19px;
+    }
 `;
 
 const SceneDivider = styled.div`
@@ -238,10 +261,6 @@ const Layout = (): JSX.Element => {
                     <GithubText href="https://github.com/erhathaway/kinetic-components">
                         github.com/erhathaway/kinetic-components
                     </GithubText>
-                    {/* <GithubIcon
-                        className="fab fa-github"
-                        href="https://github.com/erhathaway/kinetic-components"
-                    ></GithubIcon> */}
                 </Github>
             </Header>
             <Body>
@@ -259,7 +278,7 @@ const Layout = (): JSX.Element => {
                             <br />
                             The animation function has the signature:
                             <br />
-                            <CodeBlock language={'typescript'} styles={{fontSize: '10px'}}>
+                            <CodeBlock language={'typescript'}>
                                 {`(ctx: {node: HTMLElement}) => string | string[] | {finished: Promise}`}
                             </CodeBlock>
                             {` To use CSS animations return the className(s) you want appended to the
@@ -357,7 +376,7 @@ const Layout = (): JSX.Element => {
                             <br />
                             The predicate function has the signature:
                             <br />
-                            <CodeBlock language={'typescript'} styles={{fontSize: '8px'}}>
+                            <CodeBlock language={'typescript'}>
                                 {`(predicateState: any, {triggerState, visible}: {triggerState: any; visible: boolean}) => boolean`}
                             </CodeBlock>
                             <br />
