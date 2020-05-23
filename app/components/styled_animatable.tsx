@@ -6,7 +6,7 @@ const StyledAnimatable = styled(Animatable)`
     margin-top: 30px;
     height: 100px;
     width: 200px;
-    background-color: Chartreuse;
+    // background-color: Chartreuse;
     border: 1px solid black;
     border-radius: 15px;
     display: flex;
@@ -14,6 +14,8 @@ const StyledAnimatable = styled(Animatable)`
     align-items: center;
     text-align: center;
     // box-shadow: 2px 2px 0 #222;
+    font-size: 10px;
+    // padding: 25px;
 
     @media (max-width: 500px) {
         height: 100px;

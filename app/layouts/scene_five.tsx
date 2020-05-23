@@ -36,15 +36,18 @@ const animateOutJS = (ctx: AnimationCtx): AnimationResult =>
     });
 
 const ParentAnimatable = styled(StyledAnimatable)`
-    background-color: rgb(155, 255, 181);
+    // background-color: rgb(155, 255, 181);
+    background-color: white;
 `;
 
 const FirstChildAnimatable = styled(StyledAnimatable)`
-    background-color: #cbe9ff;
+    // background-color: #cbe9ff;
+    background-color: white;
 `;
 
 const SecondChildAnimatable = styled(StyledAnimatable)`
-    background-color: #ffb0b0;
+    // background-color: #ffb0b0;
+    background-color: white;
 `;
 
 const Buttons = styled.div`

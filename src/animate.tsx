@@ -12,7 +12,8 @@ import {
     setCurrentStateToFinishedForActionCount,
     setCurrentStateToInitializingForActionCount,
     setChildStateForActionCount,
-    addClassNamesToCurrentStateForActionCount
+    addClassNamesToCurrentStateForActionCount,
+    setCurrentStateToRestartingToClearExistingAnimationForActionCount
 } from './animation_state_transforms';
 import {ILogger} from 'beano';
 
@@ -69,7 +70,9 @@ const Animate = <PredicateState, TriggerState>({
         prevVisible: undefined,
         visible: false,
         childStates: {},
-        classNames: []
+        classNames: [],
+        prevAnimationKey: undefined,
+        animationKey: undefined
     });
 
     const specificAnimateLogger =
@@ -92,11 +95,14 @@ const Animate = <PredicateState, TriggerState>({
         specificAnimateLogger.debug(
             {
                 refId: refId,
+                hasRun: eState.hasRunForCycle,
                 currentState: eState.currentState,
                 childState: eState.childStates,
                 'incoming trigger': triggerState,
                 'incoming visibility': visible,
-                'old visibility': eState.visible
+                'old visibility': eState.visible,
+                prevAnimationKey: eState.prevAnimationKey,
+                animationKey: eState.animationKey
             },
             'initial state'
         );
@@ -199,17 +205,26 @@ const Animate = <PredicateState, TriggerState>({
 
                 if (shouldRun) {
                     const animation = predicateAnimation[1];
+                    const options = predicateAnimation[2];
+                    const animationKey = options ? options.key : undefined;
+
+                    asfLogger && asfLogger.debug({animationKey}, 'Found animation key');
 
                     const animationResult = animation(ctx);
                     if (animationResult) {
-                        return {hasRun: true, ctx, animationResult};
+                        return {hasRun: true, ctx, animationResult, animationKey};
                     } else {
                         return {...acc, hasRun: true, ctx};
                     }
                 }
                 return acc;
             },
-            {hasRun: false, ctx: {node}, animationResult: null} as AnimationRun
+            {
+                hasRun: false,
+                ctx: {node},
+                animationResult: null,
+                animationKey: undefined
+            } as AnimationRun
         );
     };
 
@@ -341,17 +356,42 @@ const Animate = <PredicateState, TriggerState>({
             return;
         }
 
-        setHasRunForActionCount(setEState);
-
         animateEffectLogger && animateEffectLogger.debug({when}, 'Animation running');
 
-        const {ctx: animationCtx, hasRun, animationResult} = animate(ref, animateEffectLogger);
+        const {ctx: animationCtx, hasRun, animationResult, animationKey} = animate(
+            ref,
+            animateEffectLogger
+        );
         animateEffectLogger &&
-            animateEffectLogger.debug({hasRun, animationCtx, animationResult}, 'Animation ran');
+            animateEffectLogger.debug(
+                {hasRun, animationCtx, animationResult, animationKey},
+                'Animation ran'
+            );
 
-        if (hasRun) {
-            setCurrentStateToRunningForActionCount(setEState);
+        if (animationKey !== undefined && animationKey === eState.prevAnimationKey) {
+            animateEffectLogger &&
+                animateEffectLogger.debug(
+                    {newAnimationKey: animationKey, prevAniamtionKey: eState.prevAnimationKey},
+                    'Found animation ran twice in a row. Unmounting component to clear animation'
+                );
+
+            setCurrentStateToRestartingToClearExistingAnimationForActionCount(setEState);
+            return;
+        } else {
+            setHasRunForActionCount(setEState);
         }
+        if (hasRun) {
+            animateEffectLogger &&
+                animateEffectLogger.debug('setting current state to has run = true');
+            // pass in any animation keys so we can record which animation took place
+            setCurrentStateToRunningForActionCount(setEState, animationKey);
+        }
+
+        animateEffectLogger &&
+            animateEffectLogger.debug(
+                {newAnimationKey: animationKey, prevAniamtionKey: eState.animationKey},
+                'Keys'
+            );
         if (
             animationResult &&
             (Array.isArray(animationResult) || typeof animationResult === 'string')

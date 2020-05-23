@@ -28,6 +28,8 @@ export type CurrentState<TriggerState> = {
     prevVisible: boolean | undefined;
     visible: boolean;
     classNames: string[];
+    prevAnimationKey: string | undefined;
+    animationKey: AnimationKey | undefined;
 };
 
 export type Predicate = <PS extends any, TS extends any>(
@@ -53,7 +55,12 @@ export interface IAnimationResult {
     finished: Promise<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
-export type AnimationRun = {hasRun: boolean; ctx: AnimationCtx; animationResult: AnimationResult};
+export type AnimationRun = {
+    hasRun: boolean;
+    ctx: AnimationCtx;
+    animationResult: AnimationResult;
+    animationKey?: AnimationKey;
+};
 
 /**
  * IAnimationResult for custom JS animations; string | string[] for CSS animation (these are class names)
@@ -62,7 +69,12 @@ export type AnimationResult = IAnimationResult | string | string[] | null;
 
 export type PredicateAnimation = (ctx: AnimationCtx) => AnimationResult;
 
-export type When = Array<[Predicates | Predicate, PredicateAnimation]>;
+export type AnimationKey = string;
+export type PredicateAnimationPairOptions = {key: AnimationKey};
+export type When = Array<
+    | [Predicates | Predicate, PredicateAnimation, PredicateAnimationPairOptions]
+    | [Predicates | Predicate, PredicateAnimation]
+>;
 
 export interface AnimateProps<PS, TS> {
     name?: string;

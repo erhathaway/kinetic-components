@@ -12,6 +12,7 @@ const Button = styled.div`
     background-color: cornflowerblue;
     margin: 10px;
     box-shadow: 4px 4px 0 #222;
+    // border-bottom: 8px solid black;
     font-size: 13px;
 
     :hover {

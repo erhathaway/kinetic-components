@@ -15,7 +15,7 @@ import {
 } from '../components';
 
 const Animatable = styled(StyledAnimatable)`
-    background-color: rgb(155, 255, 181);
+    // background-color: rgb(155, 255, 181);
 `;
 
 const animateInCSS = (): AnimationResult => ['animate__animated', 'animate__fadeInRight'];

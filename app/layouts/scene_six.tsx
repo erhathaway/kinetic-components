@@ -53,8 +53,8 @@ const Animatable = styled(StyledAnimatable)`
     background-color: rgb(155, 255, 181);
 `;
 
-const shouldWobble: Predicate = (_, {triggerState, visible}) => {
-    return (visible && triggerState.wobble) || false;
+const shouldWobble: Predicate = (_, {prevTriggerState, triggerState, visible}) => {
+    return (visible && triggerState.wobble !== prevTriggerState.wobble) || false;
 };
 
 const animateWobble = (): AnimationResult => ['animate__animated', 'animate__wobble'];
@@ -124,9 +124,10 @@ export default ({isVisible, animateIn, animateOut, styles}) => (
                                                         [
                                                             predicates.wasPreviouslyVisible,
                                                             predicates.isVisible
-                                                            // shouldWobble
+                                                            shouldWobble
                                                         ],
-                                                        animateWobble
+                                                        animateWobble,
+                                                        {key: 'wobble'}
                                                     ],
                                                     [
                                                         [

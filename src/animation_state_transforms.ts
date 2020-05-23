@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import {CurrentState, AnimationState, NotifyParentOfState} from './types';
+import {CurrentState, AnimationState, NotifyParentOfState, AnimationKey} from './types';
 
 export const setStateForNewAction = <TriggerState extends any>(
     setEState: React.Dispatch<React.SetStateAction<CurrentState<TriggerState>>>,
@@ -40,7 +40,9 @@ export const setStateForNewAction = <TriggerState extends any>(
             childStates,
             prevVisible: current.visible,
             visible,
-            classNames: []
+            classNames: [],
+            prevAnimationKey: current.animationKey,
+            animationKey: undefined
         };
     });
 };
@@ -64,11 +66,13 @@ export const setHasRunForActionCount = <TriggerState extends any>(
 };
 
 export const setCurrentStateToRunningForActionCount = <TriggerState extends any>(
-    setEState: React.Dispatch<React.SetStateAction<CurrentState<TriggerState>>>
+    setEState: React.Dispatch<React.SetStateAction<CurrentState<TriggerState>>>,
+    animationKey: AnimationKey | undefined
 ): void => {
     setEState(current => ({
         ...current,
-        currentState: 'running'
+        currentState: 'running',
+        animationKey
     }));
 };
 
@@ -106,6 +110,18 @@ export const addClassNamesToCurrentStateForActionCount = <TriggerState extends a
     setEState(current => ({
         ...current,
         classNames
+    }));
+};
+
+export const setCurrentStateToRestartingToClearExistingAnimationForActionCount = <
+    TriggerState extends any
+>(
+    setEState: React.Dispatch<React.SetStateAction<CurrentState<TriggerState>>>
+): void => {
+    setEState(current => ({
+        ...current,
+        currentState: 'restarting',
+        prevAnimationKey: undefined
     }));
 };
 

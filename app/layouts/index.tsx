@@ -44,6 +44,7 @@ const Header = styled.div`
         width: 100%;
         position: relative;
     }
+    // border-right: 5px solid black;
 `;
 
 const HeaderFiller = styled(Header)`
@@ -191,6 +192,8 @@ const SceneTitle = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
     margin-bottom: 20px;
+    border-bottom: 6px solid black;
+    padding-bottom: 24px;
 `;
 
 const SceneTitleMain = styled.h3`
@@ -211,7 +214,7 @@ const SceneDescription = styled.div`
 
 const SceneDivider = styled.div`
     margin-bottom: 30px;
-    border-bottom: 1px solid black;
+    // border-bottom: 1px solid black;
 `;
 
 const Prop = styled.div`
