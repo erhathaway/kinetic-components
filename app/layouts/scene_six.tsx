@@ -31,7 +31,7 @@
 // );
 
 // export default SceneSix;
-
+import logger from 'beano';
 import React from 'react';
 import anime from 'animejs';
 import styled from 'styled-components';
@@ -115,6 +115,7 @@ export default ({isVisible, animateIn, animateOut, styles}) => (
                                             }`}</Button>
                                             <Button onClick={move}>wobble</Button>
                                             <Animate
+                                                logger={logger}
                                                 name={'test'}
                                                 visible={isVisible}
                                                 triggerState={{wobble: shouldMove}}
@@ -122,8 +123,8 @@ export default ({isVisible, animateIn, animateOut, styles}) => (
                                                     [
                                                         [
                                                             predicates.wasPreviouslyVisible,
-                                                            predicates.isVisible,
-                                                            shouldWobble
+                                                            predicates.isVisible
+                                                            // shouldWobble
                                                         ],
                                                         animateWobble
                                                     ],
