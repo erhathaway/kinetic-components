@@ -13,7 +13,7 @@ const StyledAnimatable = styled(Animatable)`
     justify-content: center;
     align-items: center;
     text-align: center;
-    box-shadow: 2px 2px 0 #222;
+    // box-shadow: 2px 2px 0 #222;
 
     @media (max-width: 500px) {
         height: 100px;

@@ -34,9 +34,11 @@ export const setStateForNewAction = <TriggerState extends any>(
         return {
             actionCount,
             currentState,
+            prevTriggerState: current.triggerState,
             triggerState,
             hasRunForCycle,
             childStates,
+            prevVisible: current.visible,
             visible,
             classNames: []
         };

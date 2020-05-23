@@ -20,17 +20,27 @@ export type CurrentState<TriggerState> = {
     currentState: AnimationState; // 'restarting', 'initalizing', 'running', 'finished', 'unmounted'
     hasRunForCycle: boolean; // Flag tracking whether this component has an animation is in progress for this action count
     triggerState: TriggerState;
+    prevTriggerState: TriggerState | undefined;
     childStates: {
         // The state of each child
         [childId: string]: AnimationState | undefined;
     };
+    prevVisible: boolean | undefined;
     visible: boolean;
     classNames: string[];
 };
 
 export type Predicate = <PS extends any, TS extends any>(
     predicateState: any, // TODO replace with PS once excessively deep type problem is fixed
-    {triggerState, visible}: {triggerState: any; visible: boolean} // TODO replace with PS once excessively deep type problem is fixed
+    {
+        triggerState,
+        visible
+    }: {
+        prevTriggerState: any;
+        triggerState: any;
+        prevVisible: boolean | undefined;
+        visible: boolean;
+    } // TODO replace with PS once excessively deep type problem is fixed
 ) => boolean;
 
 export type Predicates = Array<Predicate>;

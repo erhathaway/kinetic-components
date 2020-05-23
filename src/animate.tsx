@@ -63,7 +63,9 @@ const Animate = <PredicateState, TriggerState>({
         actionCount: 0,
         currentState: 'initalizing',
         hasRunForCycle: false,
+        prevTriggerState: undefined,
         triggerState: triggerState || undefined,
+        prevVisible: undefined,
         visible: false,
         childStates: {},
         classNames: []
@@ -150,10 +152,23 @@ const Animate = <PredicateState, TriggerState>({
                 const predicate = predicateAnimation[0];
                 if (Array.isArray(predicate)) {
                     shouldRun = predicate.reduce((accc, predicate) => {
-                        return accc && predicate(predicateState, {triggerState, visible});
+                        return (
+                            accc &&
+                            predicate(predicateState, {
+                                prevTriggerState: eState.prevTriggerState,
+                                triggerState,
+                                prevVisible: eState.prevVisible,
+                                visible
+                            })
+                        );
                     }, true as boolean);
                 } else {
-                    shouldRun = predicate(predicateState, {triggerState, visible});
+                    shouldRun = predicate(predicateState, {
+                        prevTriggerState: eState.prevTriggerState,
+                        triggerState,
+                        prevVisible: eState.prevVisible,
+                        visible
+                    });
                 }
 
                 if (shouldRun) {
