@@ -1,37 +1,3 @@
-// import React from 'react';
-
-// import {Code} from '../components';
-
-// const SceneSix: React.FC = () => (
-//     <>
-//         <Code>
-            {`
-import {predicates, Animate, AnimationCtx, AnimationResult} from 'kinetic-components';
-import anime from 'animejs';
-
-export default ({isVisible, customState, wobbleState, shouldBounce, animateBounce, styles}) => (
-    <Animate
-        visible={isVisible}
-        predicateState={customState}
-        triggerState={{wobbleState}}
-        when={[
-            [shouldBounce, animateBounce]
-            [predicates.isHidden, animateOut]
-            [predicates.isVisible, animateIn],
-        ]}
-    >
-        <Animatable styles={styles}>
-            <h4>Look at me. I can show, hide, and bounce!</h4>
-        </Animatable>
-    </Animate>
-);
-`}
-//         </Code>
-//     </>
-// );
-
-// export default SceneSix;
-import logger from 'beano';
 import React from 'react';
 import anime from 'animejs';
 import styled from 'styled-components';
@@ -50,7 +16,7 @@ import {
 } from '../components';
 
 const Animatable = styled(StyledAnimatable)`
-    background-color: rgb(155, 255, 181);
+    // background-color: rgb(155, 255, 181);
 `;
 
 const shouldWobble: Predicate = (_, {prevTriggerState, triggerState, visible}) => {
@@ -81,7 +47,7 @@ const animateOutJS = (ctx: AnimationCtx): AnimationResult =>
 const SceneSix: React.FC = () => (
     <>
         <Code>
-        {`
+            {`
 import {predicates, Animate, AnimationCtx, AnimationResult, Predicate} from 'kinetic-components';
 import anime from 'animejs';
 
@@ -130,7 +96,7 @@ export default ({isVisible, wobbleState, shouldBounce, animateBounce, styles}) =
                                                     [
                                                         [
                                                             predicates.wasPreviouslyVisible,
-                                                            predicates.isVisible
+                                                            predicates.isVisible,
                                                             shouldWobble
                                                         ],
                                                         animateWobble,

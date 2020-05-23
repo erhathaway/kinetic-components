@@ -85,10 +85,7 @@ export default ({isVisibleParent, isVisibleChild, animateIn, animateOut, parentS
                         <VisibleToggle>
                             {({isVisible: isVisibleOne, toggleVisible: toggleVisibleOne}) => (
                                 <VisibleToggle>
-                                    {({
-                                        isVisible: isVisibleTwo,
-                                        toggleVisible: toggleVisibleTwo
-                                    }) => (
+                                    {({isVisible: isVisibleTwo}) => (
                                         <>
                                             <Buttons>
                                                 <Button onClick={toggleVisibleOne}>{`${

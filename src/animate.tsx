@@ -476,11 +476,11 @@ const Animate = <PredicateState, TriggerState>({
         return null;
     }
 
-    const setRefOfAnimateable = (ref: HTMLElement): void => {
+    const setRefOfAnimatable = (ref: HTMLElement): void => {
         // TODO: for some reason null is returned whenever this component rerenders.
         // Possibly due to the cloneElement behavior.
         // This prevents knowing about child unmount events, which isn't a big deal
-        // if using the Animateable component.
+        // if using the Animatable component.
         // However, if run in uncontrolled mode, this could be a problem.
         if (ref == null) {
             return;
@@ -490,7 +490,7 @@ const Animate = <PredicateState, TriggerState>({
 
     const realChildren = children
         ? React.cloneElement(children, {
-              ref: setRefOfAnimateable,
+              ref: setRefOfAnimatable,
               id: uuid,
               className: eState.classNames,
               animationBinding: {

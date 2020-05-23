@@ -30,7 +30,6 @@ const Header = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    color: Propown;
     width: 50%;
     max-width: 550px;
     color: rgb(119, 0, 119);

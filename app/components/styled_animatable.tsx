@@ -16,6 +16,7 @@ const StyledAnimatable = styled(Animatable)`
     // box-shadow: 2px 2px 0 #222;
     font-size: 10px;
     // padding: 25px;
+    background-color: white;
 
     @media (max-width: 500px) {
         height: 100px;
