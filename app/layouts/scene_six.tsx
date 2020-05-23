@@ -5,27 +5,27 @@
 // const SceneSix: React.FC = () => (
 //     <>
 //         <Code>
-//             {`
-// import {predicates, Animate, AnimationCtx, AnimationResult} from 'kinetic-components';
-// import anime from 'animejs';
+            {`
+import {predicates, Animate, AnimationCtx, AnimationResult} from 'kinetic-components';
+import anime from 'animejs';
 
-// export default ({isVisible, customState, isBouncing, shouldBounce, animateBounce, styles}) => (
-//     <Animate
-//         visible={isVisible}
-//         predicateState={customState}
-//         triggerState={{isBouncing}}
-//         when={[
-//             [shouldBounce, animateBounce]
-//             [predicates.isHidden, animateOut]
-//             [predicates.isVisible, animateIn],
-//         ]}
-//     >
-//         <Animatable styles={styles}>
-//             <h4>Look at me. I can show, hide, and bounce!</h4>
-//         </Animatable>
-//     </Animate>
-// );
-// `}
+export default ({isVisible, customState, wobbleState, shouldBounce, animateBounce, styles}) => (
+    <Animate
+        visible={isVisible}
+        predicateState={customState}
+        triggerState={{wobbleState}}
+        when={[
+            [shouldBounce, animateBounce]
+            [predicates.isHidden, animateOut]
+            [predicates.isVisible, animateIn],
+        ]}
+    >
+        <Animatable styles={styles}>
+            <h4>Look at me. I can show, hide, and bounce!</h4>
+        </Animatable>
+    </Animate>
+);
+`}
 //         </Code>
 //     </>
 // );
@@ -81,19 +81,26 @@ const animateOutJS = (ctx: AnimationCtx): AnimationResult =>
 const SceneSix: React.FC = () => (
     <>
         <Code>
-            {`
-import {Animate, Animatable, predicates} from 'kinetic-components';
+        {`
+import {predicates, Animate, AnimationCtx, AnimationResult, Predicate} from 'kinetic-components';
+import anime from 'animejs';
 
-export default ({isVisible, animateIn, animateOut, styles}) => (
+const shouldWobble: Predicate = (_, {prevTriggerState, triggerState, visible}) => {
+    return (visible && triggerState.wobbleState !== prevTriggerState.wobbleState) || false;
+};
+
+export default ({isVisible, wobbleState, shouldBounce, animateBounce, styles}) => (
     <Animate
         visible={isVisible}
+        triggerState={{wobbleState}}
         when={[
-            [predicates.isVisible, animateIn],
+            [[predicates.wasPreviouslyVisible, predicates.isVisible, shouldWobble], animateBounce, {key: 'wobble'}]
             [predicates.isHidden, animateOut]
+            [predicates.isVisible, animateIn],
         ]}
     >
         <Animatable styles={styles}>
-            <h4>Look at me. I'm animated!</h4>
+            <h4>Look at me. I can show, hide, and wobble!</h4>
         </Animatable>
     </Animate>
 );
@@ -115,7 +122,7 @@ export default ({isVisible, animateIn, animateOut, styles}) => (
                                             }`}</Button>
                                             <Button onClick={move}>wobble</Button>
                                             <Animate
-                                                logger={logger}
+                                                // logger={logger}
                                                 name={'test'}
                                                 visible={isVisible}
                                                 triggerState={{wobble: shouldMove}}

@@ -387,7 +387,7 @@ const Layout = (): JSX.Element => {
                             determine if the Animate component should run. By coupling custom
                             trigger states with custom predicates you can make animations that go
                             beyond the normal show and hide animations. For example, you can add
-                            micro bounce effects when some scene data changes.
+                            micro wobble effects when some scene data changes.
                         </SceneDescription>
                         <SceneDivider />
                         <SceneSix />
