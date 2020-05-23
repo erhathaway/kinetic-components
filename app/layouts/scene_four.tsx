@@ -36,11 +36,13 @@ const animateOutJS = (ctx: AnimationCtx): AnimationResult =>
     });
 
 const ParentAnimatable = styled(StyledAnimatable)`
-    background-color: rgb(155, 255, 181);
+    // background-color: rgb(155, 255, 181);
+    background-color: white;
 `;
 
 const ChildAnimatable = styled(StyledAnimatable)`
-    background-color: #cbe9ff;
+    // background-color: #cbe9ff;
+    background-color: white;
 `;
 
 const Buttons = styled.div`
@@ -88,13 +90,10 @@ export default ({isVisibleParent, isVisibleChild, animateIn, animateOut, parentS
                         <VisibleToggle>
                             {({isVisible: isVisibleOne, toggleVisible: toggleVisibleOne}) => (
                                 <VisibleToggle>
-                                    {({
-                                        isVisible: isVisibleTwo,
-                                        toggleVisible: toggleVisibleTwo
-                                    }) => (
+                                    {({isVisible: isVisibleTwo}) => (
                                         <>
                                             <Buttons>
-                                                <Button onClick={toggleVisibleOne}>{`Parent: ${
+                                                <Button onClick={toggleVisibleOne}>{` ${
                                                     isVisibleOne ? 'hide' : 'show'
                                                 }`}</Button>
                                                 {/* <Button onClick={toggleVisibleTwo}>{`Child: ${

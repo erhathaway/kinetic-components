@@ -36,15 +36,18 @@ const animateOutJS = (ctx: AnimationCtx): AnimationResult =>
     });
 
 const ParentAnimatable = styled(StyledAnimatable)`
-    background-color: rgb(155, 255, 181);
+    // background-color: rgb(155, 255, 181);
+    background-color: white;
 `;
 
 const FirstChildAnimatable = styled(StyledAnimatable)`
-    background-color: #cbe9ff;
+    // background-color: #cbe9ff;
+    background-color: white;
 `;
 
 const SecondChildAnimatable = styled(StyledAnimatable)`
-    background-color: #ffb0b0;
+    // background-color: #ffb0b0;
+    background-color: white;
 `;
 
 const Buttons = styled.div`
@@ -110,20 +113,12 @@ export default ({isVisibleParent, isVisibleChildOne, isVisibleChildTwo, animateI
                         <VisibleToggle>
                             {({isVisible: isVisibleOne, toggleVisible: toggleVisibleOne}) => (
                                 <VisibleToggle>
-                                    {({
-                                        isVisible: isVisibleTwo,
-                                        toggleVisible: toggleVisibleTwo
-                                    }) => (
+                                    {({isVisible: isVisibleTwo}) => (
                                         <VisibleToggle>
-                                            {({
-                                                isVisible: isVisibleThree,
-                                                toggleVisible: toggleVisibleThree
-                                            }) => (
+                                            {({isVisible: isVisibleThree}) => (
                                                 <>
                                                     <Buttons>
-                                                        <Button
-                                                            onClick={toggleVisibleOne}
-                                                        >{`Parent: ${
+                                                        <Button onClick={toggleVisibleOne}>{` ${
                                                             isVisibleOne ? 'hide' : 'show'
                                                         }`}</Button>
                                                         {/* <Button

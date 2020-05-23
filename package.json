@@ -1,6 +1,6 @@
 {
     "name": "kinetic-components",
-    "version": "0.3.4",
+    "version": "0.4.0",
     "description": "Use CSS animations or your favorite JS animation library to animate a single React component or orchestrate animations amongst a collection of React components.",
     "main": "./dist/index.cjs.js",
     "module": "./dist/index.es.js",
@@ -25,10 +25,11 @@
     ],
     "scripts": {
         "app:start": "parcel app/index.html --out-dir build_app --no-cache --no-autoinstall",
-        "app:build": "npm run clean && parcel build app/index.html --out-dir docs --no-autoinstall --no-source-maps --public-url ./ ",
+        "app:build": "parcel build app/index.html --out-dir docs --no-autoinstall --no-source-maps --public-url ./ ",
         "clean": "rimraf dist tmp docs build_app",
-        "build": "npm run clean && rollup -c",
-        "build:watch": "npm run clean && rollup -cw",
+        "build": "npm run clean && npm run pkg:build && npm run app:build",
+        "pkg:build": "rollup -c",
+        "pkg:build:watch": "rollup -cw",
         "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
         "prettier:fix": "prettier \"{src,app}/**/*\" --write",
         "prettier:check": "prettier \"{src,app}/**/*\" --check",

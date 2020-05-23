@@ -6,3 +6,4 @@ export {default as VisibleToggle} from './visible_toggle';
 export {default as JSCSSButtons} from './js_css_buttons';
 export {default as JSCSSToggle} from './js_css_toggle';
 export {default as PlaygroundInstructions} from './playground_instructions';
+export {default as MoveToggle} from './move_toggle';
