@@ -83,7 +83,7 @@ const Animate = <PredicateState, TriggerState>({
 
     // const visible = visibleProp;
 
-    const [uuid] = useId();
+    const [uuid] = useId(1, '_kinetic-components');
 
     const [ref, setRef] = useState<HTMLElement | null>();
 
