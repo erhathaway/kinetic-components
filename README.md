@@ -16,7 +16,7 @@ For example, libraries like [react-spring](https://github.com/react-spring/react
 
 ### Low barrier to entry and easy maintenance
 
-Existing React animation libraries try to do everything, as such they mix the logic of evaluating whether an animation should run with the logic of running an animation. Kinetic Components separates out the concerns of when to trigger an animation and how the animation works. As such the API size is not only reduced but the code written with it is likely to be much more maintainable. Kinetic Components only asks you to define `trigger state` - state that triggers animation runs, `animation predicates` - functions that evaluate whether an animation should run, and `animation functions` - functions that perform the animation.
+Existing React animation libraries try to do everything, as such they mix the logic of evaluating whether an animation should run with the logic of running an animation. Kinetic Components separates out the concerns of when to trigger an animation and how the animation works. Thus, the API size is not only reduced, but the code written with it is likely to be much more maintainable. Kinetic Components only asks you to define `trigger state` - state that triggers animation runs, `animation predicates` - functions that evaluate whether an animation should run, and `animation functions` - functions that perform the animation.
 
 ### Sensible API for JSX views
 
