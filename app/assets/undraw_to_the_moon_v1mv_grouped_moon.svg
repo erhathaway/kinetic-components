@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4f, 2020-05-01)"
+   sodipodi:docname="undraw_to_the_moon_v1mv_grouped_moon.svg"
+   version="1.1"
+   viewBox="0 0 926 749"
+   height="749"
+   width="926"
+   data-name="Layer 1"
+   id="e4da07c6-3f45-486e-a553-879e7f222c67">
+  <metadata
+     id="metadata427">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>to_the_moon</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs425" />
+  <sodipodi:namedview
+     inkscape:current-layer="e4da07c6-3f45-486e-a553-879e7f222c67"
+     inkscape:window-maximized="1"
+     inkscape:window-y="27"
+     inkscape:window-x="0"
+     inkscape:cy="555.30353"
+     inkscape:cx="497.35108"
+     inkscape:zoom="0.80434576"
+     showgrid="false"
+     id="namedview423"
+     inkscape:window-height="623"
+     inkscape:window-width="1280"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     inkscape:document-rotation="0" />
+  <title
+     id="title320">to_the_moon</title>
+  <g
+     transform="translate(28.536702,-1.033395)"
+     id="g446">
+    <path
+       d="M 569,681 C 330.9137,681 137.819,745.20129 137.00952,824.5 H 1000.9905 C 1000.1809,745.20129 807.0863,681 569,681 Z"
+       transform="translate(-137,-75.5)"
+       fill="#f2f2f2"
+       id="path326" />
+    <g
+       opacity="0.1"
+       id="g330">
+      <ellipse
+         cx="352"
+         cy="692"
+         rx="80"
+         ry="22.222219"
+         id="ellipse328" />
+    </g>
+    <g
+       opacity="0.1"
+       id="g334">
+      <ellipse
+         cx="525"
+         cy="652"
+         rx="80"
+         ry="22.222219"
+         id="ellipse332" />
+    </g>
+    <g
+       opacity="0.1"
+       id="g338">
+      <ellipse
+         cx="352"
+         cy="692"
+         rx="72"
+         ry="20"
+         id="ellipse336" />
+    </g>
+    <g
+       opacity="0.1"
+       id="g342">
+      <ellipse
+         cx="525"
+         cy="652"
+         rx="72"
+         ry="20"
+         id="ellipse340" />
+    </g>
+  </g>
+</svg>

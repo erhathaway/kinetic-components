@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Highlight from 'react-highlight.js';
 
+import SceneEntry from './scene_entry';
 import SceneZero from './scene_zero';
 import SceneOne from './scene_one';
 import SceneTwo from './scene_two';
@@ -184,6 +185,11 @@ const Scene = styled.div`
     margin-bottom: 150px;
 `;
 
+const SceneZeroContainer = styled.div`
+    display: flex;
+    height: 400px;
+    // width: 300px;
+`;
 const SceneTitle = styled.div`
     display: flex;
     flex-direction: column;
@@ -267,6 +273,9 @@ const Layout = (): JSX.Element => {
             </Header>
             <Body>
                 <NavPages>
+                    <SceneZeroContainer id="entry">
+                        <SceneEntry />
+                    </SceneZeroContainer>
                     <Scene id="scene-zero">
                         <SceneTitle>
                             <SceneTitleMain>Use CSS or JS animations</SceneTitleMain>
