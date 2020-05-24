@@ -4,13 +4,31 @@ Kinetic components helps you animate a single React component and orchestrate an
 
 Use CSS animations or any JS animation library you like!
 
+# Why
+
+> Aren't there enough animation libraries already?
+
+### Unopinonated animations
+
+Kinetic Components isn't a normal animation library. It is more akin to a library that provides bindings so you can trigger state based animations using the animation library / method of your choice.
+
+For example, libraries like [react-spring](https://github.com/react-spring/react-spring) force you to write your animations in terms of their API. This means you can't leverage existing CSS animations or great libraries like [animejs](https://github.com/juliangarnier/anime/) or [GSAP](https://github.com/greensock/GreenSock-JS/). Kinetic allows you to use these existing tools - simply provide an animation function that returns returns CSS class names to apply to an `Animatable` component or have the function take the `Animatable` component element reference and act on it directly.
+
+### Low barrier to entry and easy maintenance
+
+Existing React animation libraries try to do everything, as such they mix the logic of evaluating whether an animation should run with the logic of running an animation. Kinetic Components separates out the concerns of when to trigger an animation and how the animation works. As such the API size is not only reduced but the code written with it is likely to be much more maintainable. Kinetic Components only asks you to define `trigger state` - state that triggers animation runs, `animation predicates` - functions that evaluate whether an animation should run, and `animation functions` - functions that perform the animation.
+
+### Sensible API for JSX views
+
+Existing React animation libraries have an incredibly large surface area. As such when you use their `render props` API to write the animation you end up with a huge number of props and clutter the JSX file. The resulting code is not very readable or expressive so it is common to opt for the component code with hooks instead. Component code is great, but it is a layer of indirection. Sometimes that can be good to hide implementation details, but if you want to express an application layout in a single file, its now obfuscating details that would be nice to have in one layout file.
+
 # Examples
 
-All examples can be found in the playground at [https://erhathaway.github.io/kinetic-components/](https://erhathaway.github.io/kinetic-components/).
+The best way to get a feel for Kinetic Components is to read through the docs and click the examples on the playground website: [https://erhathaway.github.io/kinetic-components/](https://erhathaway.github.io/kinetic-components/).
 
 # TL;DR
 
-Usage is describe in the playground ^
+Usage is described in the playground ^
 
 In short, the library works by having an `Animate` and `Animatable` component. The `Animate` component controls the `Animatable` component. You can style the `Animatable` component and nest children under it (like additional Animate - Animatable nestings). When you change the `Animates` `visible` prop, predicate functions in the `when` prop are evaluated and associated animation functions are run on the nested `Animatable` component's DOM element.
 
