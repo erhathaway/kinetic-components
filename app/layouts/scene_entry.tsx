@@ -26,7 +26,7 @@ const StyledAnimatable = styled(Animatable)`
 `;
 
 const SceneStyledAnimatable = styled(StyledAnimatable)`
-    background-color: blue;
+    // background-color: blue;
 `;
 
 const animateInCSS = (): AnimationResult => ['animate__animated', 'animate__fadeInRight'];
@@ -35,10 +35,10 @@ const animateOutCSS = (): AnimationResult => ['animate__animated', 'animate__fad
 const rocketSceneIn = (ctx: AnimationCtx): AnimationResult =>
     anime({
         targets: `#${ctx.node.id}`,
-        translateX: ['-50%', 0],
+        // translateX: ['-50%', 0],
         scale: [0.5, 1],
         opacity: [0, 1],
-        easing: 'easeInBounce',
+        easing: 'linear',
         duration: 200
     });
 
@@ -50,7 +50,7 @@ const rocketSceneOut = (ctx: AnimationCtx): AnimationResult =>
 
         opacity: [1, 0],
         easing: 'linear',
-        duration: 200
+        duration: 400
     });
 
 const moonIn = (ctx: AnimationCtx): AnimationResult =>
@@ -60,7 +60,7 @@ const moonIn = (ctx: AnimationCtx): AnimationResult =>
         translateX: [0.9, 1],
         translateY: [0.7, 1],
         opacity: [0, 1],
-        easing: 'easeInBounce',
+        easing: 'linear',
         duration: 300,
         delay: 200
     });
@@ -68,10 +68,11 @@ const moonIn = (ctx: AnimationCtx): AnimationResult =>
 const moonOut = (ctx: AnimationCtx): AnimationResult =>
     anime({
         targets: `#${ctx.node.id}`,
-        scale: [1, 0.5],
+        scale: [1, 0.9],
         opacity: [1, 0],
+        translateY: ['0%', '30%'],
         easing: 'easeOutCubic',
-        duration: 200
+        duration: 1200
     });
 
 const rocketIn = (ctx: AnimationCtx): AnimationResult =>
@@ -79,7 +80,9 @@ const rocketIn = (ctx: AnimationCtx): AnimationResult =>
         targets: `#${ctx.node.id}`,
         translateY: ['-100%', 0],
         opacity: [0, 1],
-        easing: 'easeInBounce',
+        scale: [1.5, 1],
+
+        easing: 'linear',
         duration: 300,
         delay: 200
     });
@@ -89,9 +92,10 @@ const rocketOut = (ctx: AnimationCtx): AnimationResult =>
         targets: `#${ctx.node.id}`,
         translateY: [0, '-100%'],
         opacity: [1, 0],
-        delay: 500,
+        scale: [1, 1.8],
+        // delay: 500,
         easing: 'easeOutCubic',
-        duration: 200
+        duration: 1300
     });
 
 // const SceneContainer = styled.div`
@@ -117,7 +121,7 @@ const SceneEntry: React.FC = () => (
                     <Animate
                         name={'test'}
                         visible={isVisible}
-                        exitAfterChildFinish={['moon']}
+                        exitAfterChildStart={['moon']}
                         when={[
                             [predicates.isVisible, rocketSceneIn],
                             [predicates.isHidden, rocketSceneOut]
@@ -130,7 +134,7 @@ const SceneEntry: React.FC = () => (
                                         id="moon"
                                         animationBinding={sceneBinding}
                                         // enterAfterParentFinish
-                                        exitAfterChildFinish={['rocket']}
+                                        exitAfterChildStart={['rocket']}
                                         name={'test'}
                                         visible={true}
                                         when={[
