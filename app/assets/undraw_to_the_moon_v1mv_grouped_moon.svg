@@ -7,14 +7,14 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   inkscape:version="1.0 (4035a4f, 2020-05-01)"
-   sodipodi:docname="undraw_to_the_moon_v1mv_grouped_moon.svg"
-   version="1.1"
-   viewBox="0 0 926 749"
-   height="749"
-   width="926"
+   id="e4da07c6-3f45-486e-a553-879e7f222c67"
    data-name="Layer 1"
-   id="e4da07c6-3f45-486e-a553-879e7f222c67">
+   width="926"
+   height="749"
+   viewBox="0 0 926 749"
+   version="1.1"
+   sodipodi:docname="undraw_to_the_moon_v1mv_grouped_moon.svg"
+   inkscape:version="1.0 (4035a4f, 2020-05-01)">
   <metadata
      id="metadata427">
     <rdf:RDF>
@@ -30,75 +30,85 @@
   <defs
      id="defs425" />
   <sodipodi:namedview
-     inkscape:current-layer="e4da07c6-3f45-486e-a553-879e7f222c67"
-     inkscape:window-maximized="1"
-     inkscape:window-y="27"
-     inkscape:window-x="0"
-     inkscape:cy="555.30353"
-     inkscape:cx="497.35108"
-     inkscape:zoom="0.80434576"
-     showgrid="false"
-     id="namedview423"
-     inkscape:window-height="623"
-     inkscape:window-width="1280"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0"
-     guidetolerance="10"
-     gridtolerance="10"
-     objecttolerance="10"
-     borderopacity="1"
-     bordercolor="#666666"
+     inkscape:document-rotation="0"
      pagecolor="#ffffff"
-     inkscape:document-rotation="0" />
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1280"
+     inkscape:window-height="623"
+     id="namedview423"
+     showgrid="false"
+     inkscape:zoom="0.80434576"
+     inkscape:cx="270.45861"
+     inkscape:cy="555.30353"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g446" />
   <title
      id="title320">to_the_moon</title>
   <g
-     transform="translate(28.536702,-1.033395)"
-     id="g446">
+     style="stroke:#000000;stroke-opacity:1;stroke-width:4.29999943;stroke-miterlimit:4;stroke-dasharray:none"
+     id="g446"
+     transform="translate(28.536702,-1.033395)">
     <path
-       d="M 569,681 C 330.9137,681 137.819,745.20129 137.00952,824.5 H 1000.9905 C 1000.1809,745.20129 807.0863,681 569,681 Z"
-       transform="translate(-137,-75.5)"
+       style="stroke:#000000;stroke-opacity:1;stroke-width:8;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path326"
        fill="#f2f2f2"
-       id="path326" />
+       transform="translate(-137,-75.5)"
+       d="M 569,681 C 330.9137,681 137.819,745.20129 137.00952,824.5 H 1000.9905 C 1000.1809,745.20129 807.0863,681 569,681 Z" />
     <g
-       opacity="0.1"
-       id="g330">
+       style="stroke:#000000;stroke-opacity:1;stroke-width:4.29999943;stroke-miterlimit:4;stroke-dasharray:none"
+       id="g330"
+       opacity="0.1">
       <ellipse
-         cx="352"
-         cy="692"
-         rx="80"
+         style="stroke:#000000;stroke-opacity:1;stroke-width:4.29999943;stroke-miterlimit:4;stroke-dasharray:none"
+         id="ellipse328"
          ry="22.222219"
-         id="ellipse328" />
-    </g>
-    <g
-       opacity="0.1"
-       id="g334">
-      <ellipse
-         cx="525"
-         cy="652"
          rx="80"
-         ry="22.222219"
-         id="ellipse332" />
-    </g>
-    <g
-       opacity="0.1"
-       id="g338">
-      <ellipse
-         cx="352"
          cy="692"
-         rx="72"
-         ry="20"
-         id="ellipse336" />
+         cx="352" />
     </g>
     <g
-       opacity="0.1"
-       id="g342">
+       style="stroke:#000000;stroke-opacity:1;stroke-width:4.29999943;stroke-miterlimit:4;stroke-dasharray:none"
+       id="g334"
+       opacity="0.1">
       <ellipse
-         cx="525"
+         style="stroke:#000000;stroke-opacity:1;stroke-width:4.29999943;stroke-miterlimit:4;stroke-dasharray:none"
+         id="ellipse332"
+         ry="22.222219"
+         rx="80"
          cy="652"
-         rx="72"
+         cx="525" />
+    </g>
+    <g
+       style="stroke:#000000;stroke-opacity:1;stroke-width:4.29999943;stroke-miterlimit:4;stroke-dasharray:none"
+       id="g338"
+       opacity="0.1">
+      <ellipse
+         style="stroke:#000000;stroke-opacity:1;stroke-width:4.29999943;stroke-miterlimit:4;stroke-dasharray:none"
+         id="ellipse336"
          ry="20"
-         id="ellipse340" />
+         rx="72"
+         cy="692"
+         cx="352" />
+    </g>
+    <g
+       style="stroke:#000000;stroke-opacity:1;stroke-width:4.29999943;stroke-miterlimit:4;stroke-dasharray:none"
+       id="g342"
+       opacity="0.1">
+      <ellipse
+         style="stroke:#000000;stroke-opacity:1;stroke-width:4.29999943;stroke-miterlimit:4;stroke-dasharray:none"
+         id="ellipse340"
+         ry="20"
+         rx="72"
+         cy="652"
+         cx="525" />
     </g>
   </g>
 </svg>

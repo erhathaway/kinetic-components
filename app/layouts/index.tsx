@@ -188,6 +188,10 @@ const Scene = styled.div`
 const SceneZeroContainer = styled.div`
     display: flex;
     height: 400px;
+    border: 3px solid black;
+    border-radius: 7px;
+    // box-shadow: 4px 4px 0 #222;
+
     // width: 300px;
 `;
 const SceneTitle = styled.div`
