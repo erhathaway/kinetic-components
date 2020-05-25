@@ -18,7 +18,7 @@ const calcChildStates = (
     // const newChildKeyMap = (newC).map(c => ({[c.key as string]: c}))
 
     const oldKeys = oldC.map(c => c.key);
-    const newKeys = oldC.map(c => c.key);
+    const newKeys = newC.map(c => c.key);
 
     const leaving = oldC
         .filter(c => !newKeys.includes(c.key))
@@ -47,7 +47,7 @@ const calcChildStates = (
                   // acc.push();
                   acc.push(c);
                   const newChildAtPosition = newC[i];
-                  if (c.key !== newChildAtPosition.key) {
+                  if (newChildAtPosition && c.key !== newChildAtPosition.key) {
                       acc.push(newChildAtPosition);
                   }
                   if (newLength > oldLength && i === oldLength - 1) {
@@ -80,6 +80,7 @@ const Group = ({children}: {children: React.ReactElement[]}): React.ReactElement
         renderChildren: children
     });
     useEffect(() => {
+        // console.log('Child change noticed', children.map(c => c.key).join(''));
         // const cc = calcChildStates(childrenState.oldChildren, childrenState.newChildren);
         // console.log(
         //     'chilren',
@@ -90,7 +91,7 @@ const Group = ({children}: {children: React.ReactElement[]}): React.ReactElement
         //     'leaving',
         //     cc.leaving
         // );
-        setChildrenState(state => calcChildStates(state.oldChildren, state.newChildren));
+        setChildrenState(state => calcChildStates(state.newChildren, children));
     }, [children.map(c => c.key).join('')]);
 
     // const keys = Object.keys(children);
@@ -116,10 +117,22 @@ const Group = ({children}: {children: React.ReactElement[]}): React.ReactElement
     //         : children;
 
     // console.log('zip', zip);
+    const notifyOfFinishedWithAnimation = (key: string): void => {
+        // console.log('Notified!!!');
+        setChildrenState(state => {
+            const existingChildren = state.oldChildren.filter(c => c.key !== key);
+            return {
+                ...state,
+                oldChildren: existingChildren
+            };
+        });
+    };
     return (
         <div>
             {childrenState.renderChildren.map(c => {
+                // console.log('child', c);
                 return React.cloneElement(c, {
+                    beforeUnmount: notifyOfFinishedWithAnimation,
                     visible: childrenState.leaving[c.key as string] ? false : true
                 });
             })}

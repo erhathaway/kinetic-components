@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import anime from 'animejs';
 import styled from 'styled-components';
 
@@ -102,113 +102,115 @@ const rocketOut = (ctx: AnimationCtx): AnimationResult =>
 //     position: absolute;
 // `;
 const EntryButton = styled(Button)`
-    position: relative;
+    // position: relative;
     right: 50px;
     bottom: 50px;
-    position: absolute;
+    position: relative;
     left: 0px;
     top: 29px;
 `;
 
-const SceneEntry: React.FC = () => (
-    <>
-        <VisibleToggle>
-            {({isVisible, toggleVisible}) => (
-                <>
-                    <EntryButton onClick={toggleVisible}>{`${
-                        isVisible ? 'hide' : 'show'
-                    }`}</EntryButton>
-                    <Animate
-                        name={'test'}
-                        visible={isVisible}
-                        // exitAfterChildStart={['moon']}
-                        when={[
-                            [predicates.isVisible, rocketSceneIn],
-                            [predicates.isHidden, rocketSceneOut]
-                        ]}
-                    >
-                        <SceneStyledAnimatable>
-                            {sceneBinding => (
-                                <>
-                                    <Animate
-                                        id="moon"
-                                        // animationBinding={sceneBinding}
-                                        // enterAfterParentFinish
-                                        // exitAfterChildStart={['rocket']}
-                                        name={'test'}
-                                        visible={true}
-                                        when={[
-                                            [predicates.isVisible, moonIn],
-                                            [predicates.isHidden, moonOut]
-                                        ]}
-                                    >
-                                        <StyledAnimatable>
-                                            {sceneBinding => (
-                                                <>
-                                                    <img
-                                                        src={Moon}
-                                                        alt="Moon"
-                                                        style={{height: '300px', position: 'fixed'}}
-                                                    />
-                                                    <Group>
-                                                        <Animate
-                                                            key="hi1"
-                                                            // id="rocket1"
-                                                            // animationBinding={sceneBinding}
-                                                            // enterAfterParentFinish
-                                                            name={'test'}
-                                                            // visible={true}
-                                                            when={[
-                                                                [predicates.isVisible, rocketIn],
-                                                                [predicates.isHidden, rocketOut]
-                                                            ]}
-                                                        >
-                                                            <StyledAnimatable>
-                                                                <img
-                                                                    src={Rocket}
-                                                                    alt="Rocket"
-                                                                    style={{
-                                                                        height: '300px',
-                                                                        position: 'fixed'
-                                                                    }}
-                                                                />
-                                                            </StyledAnimatable>
-                                                        </Animate>
-                                                        <Animate
-                                                            key="hi2"
-                                                            id="rocket2"
-                                                            // animationBinding={sceneBinding}
-                                                            // enterAfterParentFinish
-                                                            name={'test'}
-                                                            // visible={true}
-                                                            when={[
-                                                                [predicates.isVisible, rocketIn],
-                                                                [predicates.isHidden, rocketOut]
-                                                            ]}
-                                                        >
-                                                            <StyledAnimatable>
-                                                                <div
-                                                                    style={{
-                                                                        height: '300px',
-                                                                        width: '200px',
-                                                                        backgroundColor: 'red'
-                                                                    }}
-                                                                />
-                                                            </StyledAnimatable>
-                                                        </Animate>
-                                                    </Group>
-                                                </>
-                                            )}
-                                        </StyledAnimatable>
-                                    </Animate>
-                                </>
-                            )}
-                        </SceneStyledAnimatable>
-                    </Animate>
-                </>
-            )}
-        </VisibleToggle>
-    </>
-);
+const SceneEntry: React.FC = () => {
+    const [count, setCount] = useState(1);
+    const incrementCount = (): void => setCount(count => count + 1);
+    const decrementCount = (): void => setCount(count => (count > 1 ? count - 1 : count));
+    console.log('count', count);
+    return (
+        <>
+            <VisibleToggle>
+                {({isVisible, toggleVisible}) => (
+                    <>
+                        <EntryButton onClick={toggleVisible}>{`${
+                            isVisible ? 'hide' : 'show'
+                        }`}</EntryButton>
+                        <EntryButton onClick={incrementCount}>{`${'increment'}`}</EntryButton>
+                        <EntryButton onClick={decrementCount}>{`${'decrement'}`}</EntryButton>
+
+                        <Animate
+                            name={'test'}
+                            visible={isVisible}
+                            // exitAfterChildStart={['moon']}
+                            when={[
+                                [predicates.isVisible, rocketSceneIn],
+                                [predicates.isHidden, rocketSceneOut]
+                            ]}
+                        >
+                            <SceneStyledAnimatable>
+                                {sceneBinding => (
+                                    <>
+                                        <Animate
+                                            id="moon"
+                                            // animationBinding={sceneBinding}
+                                            // enterAfterParentFinish
+                                            // exitAfterChildStart={['rocket']}
+                                            name={'test'}
+                                            visible={true}
+                                            when={[
+                                                [predicates.isVisible, moonIn],
+                                                [predicates.isHidden, moonOut]
+                                            ]}
+                                        >
+                                            <StyledAnimatable>
+                                                {sceneBinding => (
+                                                    <>
+                                                        {console.log('heraaae', count)}
+
+                                                        <img
+                                                            src={Moon}
+                                                            alt="Moon"
+                                                            style={{
+                                                                height: '300px',
+                                                                position: 'fixed'
+                                                            }}
+                                                        />
+                                                        <Group>
+                                                            {Array(count)
+                                                                .fill(0)
+                                                                .map((_, i) => (
+                                                                    <Animate
+                                                                        key={`group-test-${i}`}
+                                                                        // id="rocket1"
+                                                                        // animationBinding={sceneBinding}
+                                                                        // enterAfterParentFinish
+                                                                        name={'test'}
+                                                                        // visible={true}
+                                                                        when={[
+                                                                            [
+                                                                                predicates.isVisible,
+                                                                                rocketIn
+                                                                            ],
+                                                                            [
+                                                                                predicates.isHidden,
+                                                                                rocketOut
+                                                                            ]
+                                                                        ]}
+                                                                    >
+                                                                        <StyledAnimatable>
+                                                                            <div
+                                                                                style={{
+                                                                                    height: '300px',
+                                                                                    width: '200px',
+                                                                                    backgroundColor:
+                                                                                        'red'
+                                                                                }}
+                                                                            />
+                                                                        </StyledAnimatable>
+                                                                    </Animate>
+                                                                ))}
+                                                        </Group>
+                                                    </>
+                                                )}
+                                            </StyledAnimatable>
+                                        </Animate>
+                                    </>
+                                )}
+                            </SceneStyledAnimatable>
+                        </Animate>
+                    </>
+                )}
+            </VisibleToggle>
+        </>
+    );
+};
 
 export default SceneEntry;

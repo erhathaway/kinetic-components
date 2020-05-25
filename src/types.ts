@@ -77,6 +77,8 @@ export type When = Array<
 >;
 
 export interface AnimateProps<PS, TS> {
+    key?: string;
+
     name?: string;
     logger?: ILogger;
     visible?: boolean;
@@ -95,6 +97,8 @@ export interface AnimateProps<PS, TS> {
     enterAfterParentFinish?: boolean;
     exitAfterChildStart?: string[];
     exitAfterChildFinish?: string[];
+
+    beforeUnmount?: (key: string) => any;
 }
 
 export interface AnimateableProps {

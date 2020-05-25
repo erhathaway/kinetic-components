@@ -35,6 +35,8 @@ const childrenMatch = (
 };
 
 const Animate = <PredicateState, TriggerState>({
+    key,
+
     name,
 
     logger,
@@ -53,7 +55,9 @@ const Animate = <PredicateState, TriggerState>({
     exitAfterChildStart,
     exitAfterChildFinish,
 
-    animationBinding
+    animationBinding,
+
+    beforeUnmount
 }: AnimateProps<PredicateState, TriggerState>): ReturnType<React.FC<
     AnimateProps<PredicateState, TriggerState>
 >> => {
@@ -143,6 +147,13 @@ const Animate = <PredicateState, TriggerState>({
             }
         };
     }, ['onExit']);
+
+    useEffect(() => {
+        if (eState.currentState === 'finished' && visible === false) {
+            console.log('Notifying of unmount', visible, eState.currentState, key);
+            beforeUnmount && key && beforeUnmount(key);
+        }
+    }, [visible, eState.currentState]);
 
     useEffect(() => {
         setAnimationControl(c => {
@@ -498,7 +509,7 @@ const Animate = <PredicateState, TriggerState>({
               id: uuid,
               className: eState.classNames,
               animationBinding: {
-                  notifyParentOfState: (() => {}) as any, // setChildStateForActionCount(setEState),
+                  notifyParentOfState: setChildStateForActionCount(setEState),
                   parentState: eState.currentState,
                   parentVisible: eState.visible
               }
