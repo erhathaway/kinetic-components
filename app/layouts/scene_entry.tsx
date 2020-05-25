@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Rocket from '../assets/undraw_to_the_moon_v1mv_grouped_rocket.svg';
 import Moon from '../assets/undraw_to_the_moon_v1mv_grouped_moon.svg';
 
-import {predicates, Animate, Animatable, AnimationCtx, AnimationResult} from '../../src';
+import {predicates, Animate, Animatable, AnimationCtx, AnimationResult, Group} from '../../src';
 import {
     // StyledAnimatable,
     Button,
@@ -121,7 +121,7 @@ const SceneEntry: React.FC = () => (
                     <Animate
                         name={'test'}
                         visible={isVisible}
-                        exitAfterChildStart={['moon']}
+                        // exitAfterChildStart={['moon']}
                         when={[
                             [predicates.isVisible, rocketSceneIn],
                             [predicates.isHidden, rocketSceneOut]
@@ -132,9 +132,9 @@ const SceneEntry: React.FC = () => (
                                 <>
                                     <Animate
                                         id="moon"
-                                        animationBinding={sceneBinding}
+                                        // animationBinding={sceneBinding}
                                         // enterAfterParentFinish
-                                        exitAfterChildStart={['rocket']}
+                                        // exitAfterChildStart={['rocket']}
                                         name={'test'}
                                         visible={true}
                                         when={[
@@ -150,28 +150,53 @@ const SceneEntry: React.FC = () => (
                                                         alt="Moon"
                                                         style={{height: '300px', position: 'fixed'}}
                                                     />
-                                                    <Animate
-                                                        id="rocket"
-                                                        animationBinding={sceneBinding}
-                                                        // enterAfterParentFinish
-                                                        name={'test'}
-                                                        visible={true}
-                                                        when={[
-                                                            [predicates.isVisible, rocketIn],
-                                                            [predicates.isHidden, rocketOut]
-                                                        ]}
-                                                    >
-                                                        <StyledAnimatable>
-                                                            <img
-                                                                src={Rocket}
-                                                                alt="Rocket"
-                                                                style={{
-                                                                    height: '300px',
-                                                                    position: 'fixed'
-                                                                }}
-                                                            />
-                                                        </StyledAnimatable>
-                                                    </Animate>
+                                                    <Group>
+                                                        <Animate
+                                                            key="hi1"
+                                                            // id="rocket1"
+                                                            // animationBinding={sceneBinding}
+                                                            // enterAfterParentFinish
+                                                            name={'test'}
+                                                            // visible={true}
+                                                            when={[
+                                                                [predicates.isVisible, rocketIn],
+                                                                [predicates.isHidden, rocketOut]
+                                                            ]}
+                                                        >
+                                                            <StyledAnimatable>
+                                                                <img
+                                                                    src={Rocket}
+                                                                    alt="Rocket"
+                                                                    style={{
+                                                                        height: '300px',
+                                                                        position: 'fixed'
+                                                                    }}
+                                                                />
+                                                            </StyledAnimatable>
+                                                        </Animate>
+                                                        <Animate
+                                                            key="hi2"
+                                                            id="rocket2"
+                                                            // animationBinding={sceneBinding}
+                                                            // enterAfterParentFinish
+                                                            name={'test'}
+                                                            // visible={true}
+                                                            when={[
+                                                                [predicates.isVisible, rocketIn],
+                                                                [predicates.isHidden, rocketOut]
+                                                            ]}
+                                                        >
+                                                            <StyledAnimatable>
+                                                                <div
+                                                                    style={{
+                                                                        height: '300px',
+                                                                        width: '200px',
+                                                                        backgroundColor: 'red'
+                                                                    }}
+                                                                />
+                                                            </StyledAnimatable>
+                                                        </Animate>
+                                                    </Group>
                                                 </>
                                             )}
                                         </StyledAnimatable>

@@ -79,7 +79,7 @@ export type When = Array<
 export interface AnimateProps<PS, TS> {
     name?: string;
     logger?: ILogger;
-    visible: boolean;
+    visible?: boolean;
     triggerState?: TS;
     predicateState?: PS;
 

@@ -79,7 +79,11 @@ const Animate = <PredicateState, TriggerState>({
         namedAnimationLogger && namedAnimationLogger.child(eState.currentState);
     specificAnimateLogger && specificAnimateLogger.info(eState.currentState);
     const visible =
-        animationBinding && animationBinding.parentVisible === false ? false : visibleProp;
+        animationBinding && animationBinding.parentVisible === false
+            ? false
+            : visibleProp !== undefined
+            ? visibleProp
+            : true;
 
     // const visible = visibleProp;
 
@@ -494,7 +498,7 @@ const Animate = <PredicateState, TriggerState>({
               id: uuid,
               className: eState.classNames,
               animationBinding: {
-                  notifyParentOfState: setChildStateForActionCount(setEState),
+                  notifyParentOfState: (() => {}) as any, // setChildStateForActionCount(setEState),
                   parentState: eState.currentState,
                   parentVisible: eState.visible
               }
