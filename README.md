@@ -4,7 +4,7 @@ Kinetic components helps you animate a single React component and orchestrate an
 
 Use CSS animations or any JS animation library you like!
 
-*Update:* I'm actively looking for contributors. I would like to make this library more robust and finalize the API for a V1 release. The long term goal is to port this to web components and make this cross-framework compatible.
+**Update:** I'm actively looking for contributors. I would like to make this library more robust and finalize the API for a V1 release. The long term goal is to port this to web components and make this cross-framework compatible.
 
 # Why
 
