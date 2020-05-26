@@ -72,11 +72,11 @@ export default ({isVisibleParent, isVisibleChildOne, isVisibleChildTwo, animateI
         <Animatable  styles={parentStyles}>
             {parentAnimationBinding => (
                 <Animate
+                    {...parentAnimationBinding}
                     id={'child-one'}
                     visible={isVisibleChildOne}
                     exitAfterChildFinish={['child-two']}
                     enterAfterParentFinish
-                    animationBinding={parentAnimationBinding}
                     when={[
                         [predicates.isVisible, animateIn],
                         [predicates.isHidden, animateOut]
@@ -85,10 +85,10 @@ export default ({isVisibleParent, isVisibleChildOne, isVisibleChildTwo, animateI
                     <Animatable  styles={childOneStyles}>
                         {childAnimationBinding => (
                             <Animate
+                                {...childAnimationBinding}
                                 id={'child-two'}
                                 visible={isVisibleChildTwo}
                                 enterAfterParentFinish
-                                animationBinding={childAnimationBinding}
                                 when={[
                                     [predicates.isVisible, animateIn],
                                     [predicates.isHidden, animateOut]
@@ -153,6 +153,7 @@ export default ({isVisibleParent, isVisibleChildOne, isVisibleChildTwo, animateI
                                                         <ParentAnimatable>
                                                             {parentAnimationBinding => (
                                                                 <Animate
+                                                                    {...parentAnimationBinding}
                                                                     id={'scene-five-child-one'}
                                                                     name={'child-one'}
                                                                     visible={isVisibleTwo}
@@ -160,9 +161,6 @@ export default ({isVisibleParent, isVisibleChildOne, isVisibleChildTwo, animateI
                                                                         'scene-five-child-two'
                                                                     ]}
                                                                     enterAfterParentFinish
-                                                                    animationBinding={
-                                                                        parentAnimationBinding
-                                                                    }
                                                                     when={[
                                                                         [
                                                                             predicates.isVisible,
@@ -181,6 +179,7 @@ export default ({isVisibleParent, isVisibleChildOne, isVisibleChildTwo, animateI
                                                                     <FirstChildAnimatable>
                                                                         {childAnimationBinding => (
                                                                             <Animate
+                                                                                {...childAnimationBinding}
                                                                                 id={
                                                                                     'scene-five-child-two'
                                                                                 }
@@ -189,9 +188,6 @@ export default ({isVisibleParent, isVisibleChildOne, isVisibleChildTwo, animateI
                                                                                     isVisibleThree
                                                                                 }
                                                                                 enterAfterParentFinish
-                                                                                animationBinding={
-                                                                                    childAnimationBinding
-                                                                                }
                                                                                 when={[
                                                                                     [
                                                                                         predicates.isVisible,

@@ -76,7 +76,7 @@ export type When = Array<
     | [Predicates | Predicate, PredicateAnimation]
 >;
 
-export interface AnimateProps<PS, TS> {
+export type AnimateProps<PS, TS> = {
     key?: string;
 
     name?: string;
@@ -92,30 +92,27 @@ export interface AnimateProps<PS, TS> {
 
     id?: string;
 
-    parentState?: AnimationState;
+    // parentState?: AnimationState;
 
-    animationBinding?: AnimationBinding;
+    // animationBinding?: AnimationBinding;
     enterAfterParentStart?: boolean;
     enterAfterParentFinish?: boolean;
     exitAfterChildStart?: string[];
     exitAfterChildFinish?: string[];
 
     beforeUnmount?: (key: string) => any;
-}
+} & Partial<AnimationBinding>;
 
-export interface AnimateableProps {
+export type AnimatableProps = {
     id?: string;
     className?: string;
-    animationBinding?: AnimationBinding;
-    parentState?: AnimationState;
+    // animationBinding?: AnimationBinding;
+    // parentState?: AnimationState;
 
     style?: object;
     children?:
-        | (<P, T extends string>(
-              animationBinding: AnimationBinding | undefined,
-              parentBinding: AnimationState | undefined
-          ) => any)
+        | (<P, T extends string>(animationBinding: AnimationBinding | undefined) => any)
         | React.ReactElement
         // | any
         | Element;
-}
+} & Partial<AnimationBinding>;

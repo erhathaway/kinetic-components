@@ -140,9 +140,10 @@ const SceneEntry: React.FC = () => {
                                 {sceneBinding => (
                                     <>
                                         <Animate
+                                            {...sceneBinding}
                                             id="moon"
                                             logger={logger}
-                                            animationBinding={sceneBinding}
+                                            // animationBinding={sceneBinding}
                                             enterAfterParentFinish
                                             // exitAfterChildStart={['rocket']}
                                             name={'moon'}
@@ -153,7 +154,7 @@ const SceneEntry: React.FC = () => {
                                             ]}
                                         >
                                             <StyledAnimatable>
-                                                {(sceneBinding, parentState) => (
+                                                {childSceneBinding => (
                                                     <>
                                                         <img
                                                             src={Moon}
@@ -168,14 +169,15 @@ const SceneEntry: React.FC = () => {
                                                                 .fill(0)
                                                                 .map((_, i) => (
                                                                     <Animate
+                                                                        {...childSceneBinding}
                                                                         key={`group-test-${i}`}
                                                                         name={`rocket-${i}`}
                                                                         logger={logger}
-                                                                        parentState={parentState}
+                                                                        // parentState={parentState}
                                                                         // id="rocket1"
-                                                                        animationBinding={
-                                                                            sceneBinding
-                                                                        }
+                                                                        // animationBinding={
+                                                                        //     sceneBinding
+                                                                        // }
                                                                         // enterAfterParentFinish
                                                                         // name={'test'}
                                                                         // visible={true}

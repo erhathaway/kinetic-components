@@ -66,9 +66,9 @@ export default ({isVisibleParent, isVisibleChild, animateIn, animateOut, parentS
         <Animatable  styles={parentStyles}>
             {animationBinding => (
                 <Animate
+                    {...animationBinding}
                     id={'child'}
                     visible={isVisibleTwo}
-                    animationBinding={animationBinding}
                     when={[
                         [predicates.isVisible, animateIn],
                         [predicates.isHidden, animateOut]
@@ -122,7 +122,7 @@ export default ({isVisibleParent, isVisibleChild, animateIn, animateOut, parentS
                                                             id={'scene-four-child'}
                                                             name={'child'}
                                                             visible={isVisibleTwo}
-                                                            animationBinding={animationBinding}
+                                                            {...animationBinding}
                                                             when={[
                                                                 [
                                                                     predicates.isVisible,

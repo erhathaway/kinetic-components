@@ -74,7 +74,7 @@ const Group = ({
     children: React.ReactElement[];
     logger?: ILogger;
 }): React.ReactElement => {
-    const moduleLogger = logger && logger.child('kinnetic-components');
+    const moduleLogger = logger && logger.child('kinetic-components');
     const l = moduleLogger && moduleLogger.child('AnimateGroup Component');
     // const childKeys = Array.isArray(children) ? children.map(c => c.key) : children;
     const [childrenState, setChildrenState] = React.useState<ChildrenState>({
@@ -92,7 +92,7 @@ const Group = ({
         // console.log('Child change noticed', children.map(c => c.key).join(''));
         // const cc = calcChildStates(childrenState.oldChildren, childrenState.newChildren);
         // console.log(
-        //     'chilren',
+        //     'children',
         //     'entering',
         //     cc.entering,
         //     'nochange',

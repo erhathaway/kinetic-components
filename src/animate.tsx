@@ -56,13 +56,16 @@ const Animate = <PredicateState, TriggerState>({
     exitAfterChildFinish,
 
     parentState: _parentState,
-    animationBinding,
+    parentVisible: _parentVisible,
+    notifyParentOfState,
+
+    // animationBinding,
 
     beforeUnmount
 }: AnimateProps<PredicateState, TriggerState>): ReturnType<React.FC<
     AnimateProps<PredicateState, TriggerState>
 >> => {
-    const moduleLogger = logger && logger.child('kinnetic-components');
+    const moduleLogger = logger && logger.child('kinetic-components');
     const animateLogger = moduleLogger && moduleLogger.child('Animate Component');
     const namedAnimationLogger = animateLogger && animateLogger.child(name || 'unnamed');
 
@@ -84,11 +87,7 @@ const Animate = <PredicateState, TriggerState>({
         namedAnimationLogger && namedAnimationLogger.child(eState.currentState);
     specificAnimateLogger && specificAnimateLogger.info(eState.currentState);
     const visible =
-        animationBinding && animationBinding.parentVisible === false
-            ? false
-            : visibleProp !== undefined
-            ? visibleProp
-            : true;
+        _parentVisible === false ? false : visibleProp !== undefined ? visibleProp : true;
 
     // const visible = visibleProp;
 
@@ -105,7 +104,7 @@ const Animate = <PredicateState, TriggerState>({
             {
                 refId: refId,
                 parentState: _parentState,
-                animationBinding,
+                parentVisible: _parentVisible,
                 hasRun: eState.hasRunForCycle,
                 currentState: eState.currentState,
                 childState: eState.childStates,
@@ -132,21 +131,21 @@ const Animate = <PredicateState, TriggerState>({
     );
 
     useEffect(() => {
-        if (animationBinding) {
+        if (notifyParentOfState) {
             specificAnimateLogger &&
                 specificAnimateLogger.info(eState.currentState, 'Notifying parent of state');
 
-            animationBinding.notifyParentOfState(id || uuid, eState.currentState);
+            notifyParentOfState(id || uuid, eState.currentState);
         }
     }, [eState.currentState]);
 
     useEffect(() => {
         return () => {
-            if (animationBinding) {
+            if (notifyParentOfState) {
                 specificAnimateLogger &&
                     specificAnimateLogger.debug('Unmounting from unmount action');
 
-                animationBinding.notifyParentOfState(id || uuid, 'unmounted');
+                notifyParentOfState(id || uuid, 'unmounted');
             }
         };
     }, ['onExit']);
@@ -259,9 +258,8 @@ const Animate = <PredicateState, TriggerState>({
         }
     }, [refId]);
 
-    const parentState =
-        _parentState || (animationBinding && animationBinding.parentState) || 'initalizing';
-    const parentVisible = (animationBinding && animationBinding.parentVisible) || true;
+    const parentState = _parentState || 'initalizing';
+    // const parentVisible = _parentVisible || true;
 
     useEffect(() => {
         specificAnimateLogger && specificAnimateLogger.debug({parentState}, 'Update parentState');
@@ -269,8 +267,8 @@ const Animate = <PredicateState, TriggerState>({
 
     useEffect(() => {
         specificAnimateLogger &&
-            specificAnimateLogger.debug({parentVisible}, 'Update parentVisible');
-    }, [parentVisible]);
+            specificAnimateLogger.debug({parentVisible: _parentVisible}, 'Update parentVisible');
+    }, [_parentVisible]);
 
     useEffect(() => {
         specificAnimateLogger &&
@@ -514,12 +512,12 @@ const Animate = <PredicateState, TriggerState>({
               ref: setRefOfAnimatable,
               id: uuid,
               className: eState.classNames,
-              animationBinding: {
-                  notifyParentOfState: setChildStateForActionCount(setEState),
-                  parentState: eState.currentState,
-                  parentVisible: eState.visible
-              },
-              parentState
+              //   animationBinding: {
+              notifyParentOfState: setChildStateForActionCount(setEState),
+              parentState: eState.currentState,
+              parentVisible: eState.visible
+              //   },
+              //   parentState
           })
         : null;
 
