@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import anime from 'animejs';
 import styled from 'styled-components';
+import logger from 'beano';
 
 import Rocket from '../assets/undraw_to_the_moon_v1mv_grouped_rocket.svg';
 import Moon from '../assets/undraw_to_the_moon_v1mv_grouped_moon.svg';
@@ -26,7 +27,7 @@ const StyledAnimatable = styled(Animatable)`
 `;
 
 const SceneStyledAnimatable = styled(StyledAnimatable)`
-    // background-color: blue;
+    background-color: blue;
 `;
 
 const animateInCSS = (): AnimationResult => ['animate__animated', 'animate__fadeInRight'];
@@ -111,9 +112,9 @@ const EntryButton = styled(Button)`
 `;
 
 const SceneEntry: React.FC = () => {
-    const [count, setCount] = useState(1);
+    const [count, setCount] = useState(0);
     const incrementCount = (): void => setCount(count => count + 1);
-    const decrementCount = (): void => setCount(count => (count > 1 ? count - 1 : count));
+    const decrementCount = (): void => setCount(count => (count > 0 ? count - 1 : count));
     console.log('count', count);
     return (
         <>
@@ -140,10 +141,11 @@ const SceneEntry: React.FC = () => {
                                     <>
                                         <Animate
                                             id="moon"
-                                            // animationBinding={sceneBinding}
-                                            // enterAfterParentFinish
+                                            logger={logger}
+                                            animationBinding={sceneBinding}
+                                            enterAfterParentFinish
                                             // exitAfterChildStart={['rocket']}
-                                            name={'test'}
+                                            name={'moon'}
                                             visible={true}
                                             when={[
                                                 [predicates.isVisible, moonIn],
@@ -151,10 +153,8 @@ const SceneEntry: React.FC = () => {
                                             ]}
                                         >
                                             <StyledAnimatable>
-                                                {sceneBinding => (
+                                                {(sceneBinding, parentState) => (
                                                     <>
-                                                        {console.log('heraaae', count)}
-
                                                         <img
                                                             src={Moon}
                                                             alt="Moon"
@@ -163,16 +163,21 @@ const SceneEntry: React.FC = () => {
                                                                 position: 'fixed'
                                                             }}
                                                         />
-                                                        <Group>
+                                                        <Group logger={logger}>
                                                             {Array(count)
                                                                 .fill(0)
                                                                 .map((_, i) => (
                                                                     <Animate
                                                                         key={`group-test-${i}`}
+                                                                        name={`rocket-${i}`}
+                                                                        logger={logger}
+                                                                        parentState={parentState}
                                                                         // id="rocket1"
-                                                                        // animationBinding={sceneBinding}
+                                                                        animationBinding={
+                                                                            sceneBinding
+                                                                        }
                                                                         // enterAfterParentFinish
-                                                                        name={'test'}
+                                                                        // name={'test'}
                                                                         // visible={true}
                                                                         when={[
                                                                             [

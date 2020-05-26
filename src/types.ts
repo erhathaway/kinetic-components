@@ -92,6 +92,8 @@ export interface AnimateProps<PS, TS> {
 
     id?: string;
 
+    parentState?: AnimationState;
+
     animationBinding?: AnimationBinding;
     enterAfterParentStart?: boolean;
     enterAfterParentFinish?: boolean;
@@ -105,9 +107,14 @@ export interface AnimateableProps {
     id?: string;
     className?: string;
     animationBinding?: AnimationBinding;
+    parentState?: AnimationState;
+
     style?: object;
     children?:
-        | (<P, T extends string>(animationBinding: AnimationBinding | undefined) => any)
+        | (<P, T extends string>(
+              animationBinding: AnimationBinding | undefined,
+              parentBinding: AnimationState | undefined
+          ) => any)
         | React.ReactElement
         // | any
         | Element;

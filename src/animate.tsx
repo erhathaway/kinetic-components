@@ -55,6 +55,7 @@ const Animate = <PredicateState, TriggerState>({
     exitAfterChildStart,
     exitAfterChildFinish,
 
+    parentState: _parentState,
     animationBinding,
 
     beforeUnmount
@@ -103,6 +104,8 @@ const Animate = <PredicateState, TriggerState>({
         specificAnimateLogger.debug(
             {
                 refId: refId,
+                parentState: _parentState,
+                animationBinding,
                 hasRun: eState.hasRunForCycle,
                 currentState: eState.currentState,
                 childState: eState.childStates,
@@ -256,7 +259,8 @@ const Animate = <PredicateState, TriggerState>({
         }
     }, [refId]);
 
-    const parentState = (animationBinding && animationBinding.parentState) || 'initalizing';
+    const parentState =
+        _parentState || (animationBinding && animationBinding.parentState) || 'initalizing';
     const parentVisible = (animationBinding && animationBinding.parentVisible) || true;
 
     useEffect(() => {
@@ -475,6 +479,8 @@ const Animate = <PredicateState, TriggerState>({
         }
     }, [eState.currentState]);
 
+    children && specificAnimateLogger && specificAnimateLogger.debug('Children exist!');
+
     const endLogger = specificAnimateLogger && specificAnimateLogger.child('end');
     if (eState.currentState === 'restarting') {
         endLogger &&
@@ -512,7 +518,8 @@ const Animate = <PredicateState, TriggerState>({
                   notifyParentOfState: setChildStateForActionCount(setEState),
                   parentState: eState.currentState,
                   parentVisible: eState.visible
-              }
+              },
+              parentState
           })
         : null;
 
@@ -527,7 +534,11 @@ const Animate = <PredicateState, TriggerState>({
     }
 
     if (visible && enterAfterParentFinish && parentState !== 'finished') {
-        endLogger && endLogger.debug('Waiting for parent to finish before showing children');
+        endLogger &&
+            endLogger.debug(
+                {visible, enterAfterParentFinish, parentState},
+                'Waiting for parent to finish before showing children'
+            );
 
         return null;
     }

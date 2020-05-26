@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {ILogger} from 'beano';
 
 type Co = React.ReactElement;
 
@@ -66,7 +67,15 @@ const calcChildStates = (
         renderChildren
     };
 };
-const Group = ({children}: {children: React.ReactElement[]}): React.ReactElement => {
+const Group = ({
+    children,
+    logger
+}: {
+    children: React.ReactElement[];
+    logger?: ILogger;
+}): React.ReactElement => {
+    const moduleLogger = logger && logger.child('kinnetic-components');
+    const l = moduleLogger && moduleLogger.child('AnimateGroup Component');
     // const childKeys = Array.isArray(children) ? children.map(c => c.key) : children;
     const [childrenState, setChildrenState] = React.useState<ChildrenState>({
         oldChildren: [],
@@ -127,6 +136,9 @@ const Group = ({children}: {children: React.ReactElement[]}): React.ReactElement
             };
         });
     };
+
+    l && l.debug({numberOfChildren: childrenState.renderChildren.length}, 'Showing children');
+    // console.log('Showing ', childrenState.renderChildren.length);
     return (
         <div>
             {childrenState.renderChildren.map(c => {

@@ -19,7 +19,7 @@ const Animatable = React.forwardRef<HTMLDivElement, AnimateableProps>(function a
     return (
         <div style={props.style} id={props.id} ref={ref} className={props.className}>
             {props.children && typeof props.children === 'function' && props.animationBinding
-                ? props.children(props.animationBinding)
+                ? props.children(props.animationBinding, props.parentState)
                 : props.children
                 ? props.children
                 : null}
