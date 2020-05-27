@@ -3,7 +3,7 @@ import anime from 'animejs';
 import styled from 'styled-components';
 import logger from 'beano';
 
-import Rocket from '../assets/undraw_to_the_moon_v1mv_grouped_rocket.svg';
+// import Rocket from '../assets/undraw_to_the_moon_v1mv_grouped_rocket.svg';
 import Moon from '../assets/undraw_to_the_moon_v1mv_grouped_moon.svg';
 
 import {predicates, Animate, Animatable, AnimationCtx, AnimationResult, Group} from '../../src';
@@ -30,8 +30,8 @@ const SceneStyledAnimatable = styled(StyledAnimatable)`
     background-color: blue;
 `;
 
-const animateInCSS = (): AnimationResult => ['animate__animated', 'animate__fadeInRight'];
-const animateOutCSS = (): AnimationResult => ['animate__animated', 'animate__fadeOutRight'];
+// const animateInCSS = (): AnimationResult => ['animate__animated', 'animate__fadeInRight'];
+// const animateOutCSS = (): AnimationResult => ['animate__animated', 'animate__fadeOutRight'];
 
 const rocketSceneIn = (ctx: AnimationCtx): AnimationResult =>
     anime({
@@ -128,21 +128,23 @@ const SceneEntry: React.FC = () => {
                         <EntryButton onClick={decrementCount}>{`${'decrement'}`}</EntryButton>
 
                         <Animate
-                            name={'test'}
+                            name={'scene'}
                             visible={isVisible}
+                            // logger={logger}
                             // exitAfterChildStart={['moon']}
                             when={[
                                 [predicates.isVisible, rocketSceneIn],
                                 [predicates.isHidden, rocketSceneOut]
                             ]}
                         >
-                            <SceneStyledAnimatable>
+                            <SceneStyledAnimatable logger={logger}>
                                 {sceneBinding => (
                                     <>
+                                        {console.log('moon animation binding', sceneBinding)}
                                         <Animate
                                             {...sceneBinding}
                                             id="moon"
-                                            logger={logger}
+                                            // logger={logger}
                                             // animationBinding={sceneBinding}
                                             enterAfterParentFinish
                                             // exitAfterChildStart={['rocket']}

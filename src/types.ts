@@ -106,6 +106,8 @@ export type AnimateProps<PS, TS> = {
 export type AnimatableProps = {
     id?: string;
     className?: string;
+    logger?: ILogger;
+
     // animationBinding?: AnimationBinding;
     // parentState?: AnimationState;
 

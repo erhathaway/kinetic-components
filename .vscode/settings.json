@@ -21,6 +21,7 @@
         "animationend",
         "animejs",
         "autoinstall",
+        "rerenders",
         "undraw",
         "unmount"
     ]
