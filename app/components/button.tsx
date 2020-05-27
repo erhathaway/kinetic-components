@@ -22,6 +22,7 @@ const Button = styled.div`
     :active {
         background-color: yellow;
     }
+    z-index: 100;
 `;
 
 export default Button;

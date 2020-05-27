@@ -35,6 +35,8 @@ const childrenMatch = (
 };
 
 const Animate = <PredicateState, TriggerState>({
+    key,
+
     name,
 
     logger,
@@ -53,11 +55,17 @@ const Animate = <PredicateState, TriggerState>({
     exitAfterChildStart,
     exitAfterChildFinish,
 
-    animationBinding
+    parentState: _parentState,
+    parentVisible: _parentVisible,
+    notifyParentOfState,
+
+    // animationBinding,
+
+    beforeUnmount
 }: AnimateProps<PredicateState, TriggerState>): ReturnType<React.FC<
     AnimateProps<PredicateState, TriggerState>
 >> => {
-    const moduleLogger = logger && logger.child('kinnetic-components');
+    const moduleLogger = logger && logger.child('kinetic-components');
     const animateLogger = moduleLogger && moduleLogger.child('Animate Component');
     const namedAnimationLogger = animateLogger && animateLogger.child(name || 'unnamed');
 
@@ -79,7 +87,7 @@ const Animate = <PredicateState, TriggerState>({
         namedAnimationLogger && namedAnimationLogger.child(eState.currentState);
     specificAnimateLogger && specificAnimateLogger.info(eState.currentState);
     const visible =
-        animationBinding && animationBinding.parentVisible === false ? false : visibleProp;
+        _parentVisible === false ? false : visibleProp !== undefined ? visibleProp : true;
 
     // const visible = visibleProp;
 
@@ -95,6 +103,8 @@ const Animate = <PredicateState, TriggerState>({
         specificAnimateLogger.debug(
             {
                 refId: refId,
+                parentState: _parentState,
+                parentVisible: _parentVisible,
                 hasRun: eState.hasRunForCycle,
                 currentState: eState.currentState,
                 childState: eState.childStates,
@@ -121,24 +131,31 @@ const Animate = <PredicateState, TriggerState>({
     );
 
     useEffect(() => {
-        if (animationBinding) {
+        if (notifyParentOfState) {
             specificAnimateLogger &&
                 specificAnimateLogger.info(eState.currentState, 'Notifying parent of state');
 
-            animationBinding.notifyParentOfState(id || uuid, eState.currentState);
+            notifyParentOfState(id || uuid, eState.currentState);
         }
     }, [eState.currentState]);
 
     useEffect(() => {
         return () => {
-            if (animationBinding) {
+            if (notifyParentOfState) {
                 specificAnimateLogger &&
                     specificAnimateLogger.debug('Unmounting from unmount action');
 
-                animationBinding.notifyParentOfState(id || uuid, 'unmounted');
+                notifyParentOfState(id || uuid, 'unmounted');
             }
         };
     }, ['onExit']);
+
+    useEffect(() => {
+        if (eState.currentState === 'finished' && visible === false) {
+            console.log('Notifying of unmount', visible, eState.currentState, key);
+            beforeUnmount && key && beforeUnmount(key);
+        }
+    }, [visible, eState.currentState]);
 
     useEffect(() => {
         setAnimationControl(c => {
@@ -241,8 +258,8 @@ const Animate = <PredicateState, TriggerState>({
         }
     }, [refId]);
 
-    const parentState = (animationBinding && animationBinding.parentState) || 'initalizing';
-    const parentVisible = (animationBinding && animationBinding.parentVisible) || true;
+    const parentState = _parentState || 'initalizing';
+    // const parentVisible = _parentVisible || true;
 
     useEffect(() => {
         specificAnimateLogger && specificAnimateLogger.debug({parentState}, 'Update parentState');
@@ -250,8 +267,8 @@ const Animate = <PredicateState, TriggerState>({
 
     useEffect(() => {
         specificAnimateLogger &&
-            specificAnimateLogger.debug({parentVisible}, 'Update parentVisible');
-    }, [parentVisible]);
+            specificAnimateLogger.debug({parentVisible: _parentVisible}, 'Update parentVisible');
+    }, [_parentVisible]);
 
     useEffect(() => {
         specificAnimateLogger &&
@@ -371,7 +388,7 @@ const Animate = <PredicateState, TriggerState>({
         if (animationKey !== undefined && animationKey === eState.prevAnimationKey) {
             animateEffectLogger &&
                 animateEffectLogger.debug(
-                    {newAnimationKey: animationKey, prevAniamtionKey: eState.prevAnimationKey},
+                    {newAnimationKey: animationKey, prevAnimationKey: eState.prevAnimationKey},
                     'Found animation ran twice in a row. Unmounting component to clear animation'
                 );
 
@@ -389,7 +406,7 @@ const Animate = <PredicateState, TriggerState>({
 
         animateEffectLogger &&
             animateEffectLogger.debug(
-                {newAnimationKey: animationKey, prevAniamtionKey: eState.animationKey},
+                {newAnimationKey: animationKey, prevAnimationKey: eState.animationKey},
                 'Keys'
             );
         if (
@@ -460,6 +477,8 @@ const Animate = <PredicateState, TriggerState>({
         }
     }, [eState.currentState]);
 
+    children && specificAnimateLogger && specificAnimateLogger.debug('Children exist!');
+
     const endLogger = specificAnimateLogger && specificAnimateLogger.child('end');
     if (eState.currentState === 'restarting') {
         endLogger &&
@@ -493,11 +512,12 @@ const Animate = <PredicateState, TriggerState>({
               ref: setRefOfAnimatable,
               id: uuid,
               className: eState.classNames,
-              animationBinding: {
-                  notifyParentOfState: setChildStateForActionCount(setEState),
-                  parentState: eState.currentState,
-                  parentVisible: eState.visible
-              }
+              //   animationBinding: {
+              notifyParentOfState: setChildStateForActionCount(setEState),
+              parentState: eState.currentState,
+              parentVisible: eState.visible
+              //   },
+              //   parentState
           })
         : null;
 
@@ -512,7 +532,11 @@ const Animate = <PredicateState, TriggerState>({
     }
 
     if (visible && enterAfterParentFinish && parentState !== 'finished') {
-        endLogger && endLogger.debug('Waiting for parent to finish before showing children');
+        endLogger &&
+            endLogger.debug(
+                {visible, enterAfterParentFinish, parentState},
+                'Waiting for parent to finish before showing children'
+            );
 
         return null;
     }
