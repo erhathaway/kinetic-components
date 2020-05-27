@@ -388,7 +388,7 @@ const Animate = <PredicateState, TriggerState>({
         if (animationKey !== undefined && animationKey === eState.prevAnimationKey) {
             animateEffectLogger &&
                 animateEffectLogger.debug(
-                    {newAnimationKey: animationKey, prevAniamtionKey: eState.prevAnimationKey},
+                    {newAnimationKey: animationKey, prevAnimationKey: eState.prevAnimationKey},
                     'Found animation ran twice in a row. Unmounting component to clear animation'
                 );
 
@@ -406,7 +406,7 @@ const Animate = <PredicateState, TriggerState>({
 
         animateEffectLogger &&
             animateEffectLogger.debug(
-                {newAnimationKey: animationKey, prevAniamtionKey: eState.animationKey},
+                {newAnimationKey: animationKey, prevAnimationKey: eState.animationKey},
                 'Keys'
             );
         if (
